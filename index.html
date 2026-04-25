@@ -8,7 +8,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Exo+2:wght@300;400;600;700;800;900&family=Source+Sans+3:wght@300;400;600&display=swap" rel="stylesheet">
 <style>
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
+ 
 :root {
   --navy:       #040c1b;
   --navy-mid:   #081628;
@@ -24,10 +24,10 @@
   --font-head:  'Exo 2', sans-serif;
   --font-body:  'Source Sans 3', sans-serif;
 }
-
+ 
 html { scroll-behavior: smooth; }
 body { background: var(--navy); color: var(--off-white); font-family: var(--font-body); font-size: 17px; line-height: 1.7; overflow-x: hidden; }
-
+ 
 /* NAV */
 nav {
   position: fixed; top: 0; left: 0; right: 0; z-index: 200;
@@ -46,7 +46,7 @@ nav.scrolled { background: rgba(4,12,27,0.98); }
 .nav-cta:hover { box-shadow: 0 0 20px rgba(0,200,176,0.4); transform: translateY(-1px); }
 .nav-toggle { display: none; background: none; border: none; cursor: pointer; padding: 4px; }
 .nav-toggle span { display: block; width: 24px; height: 2px; background: var(--off-white); margin: 5px 0; border-radius: 2px; }
-
+ 
 /* HERO */
 #hero { min-height: 100vh; display: grid; place-items: center; padding: 120px 5% 80px; position: relative; overflow: hidden; }
 .hero-bg-img {
@@ -99,7 +99,7 @@ h1 em { font-style: normal; color: var(--teal); }
 .stat-num { font-family: var(--font-head); font-size: 2rem; font-weight: 900; color: var(--white); }
 .stat-num span { color: var(--teal); }
 .stat-label { font-size: 0.78rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.08em; margin-top: 2px; }
-
+ 
 /* SECTIONS */
 section { padding: 100px 5%; }
 .inner { max-width: 1200px; margin: 0 auto; }
@@ -107,7 +107,7 @@ section { padding: 100px 5%; }
 h2 { font-family: var(--font-head); font-size: clamp(1.8rem, 3.5vw, 2.8rem); font-weight: 800; color: var(--white); letter-spacing: -0.8px; line-height: 1.13; margin-bottom: 1rem; }
 .section-intro { color: var(--muted); font-size: 1.04rem; max-width: 600px; line-height: 1.72; }
 .divider { height: 1px; background: linear-gradient(90deg, transparent, rgba(0,200,176,0.35), transparent); }
-
+ 
 /* STRIP */
 #strip { background: var(--navy-mid); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); padding: 48px 5%; }
 .strip-grid { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(200px,1fr)); gap: 1px; }
@@ -118,7 +118,7 @@ h2 { font-family: var(--font-head); font-size: clamp(1.8rem, 3.5vw, 2.8rem); fon
 .strip-item:hover .strip-icon { transform: scale(1.15) translateY(-3px); }
 .strip-item strong { display: block; font-family: var(--font-head); font-weight: 700; color: var(--white); font-size: 0.95rem; margin-bottom: 4px; }
 .strip-item span { font-size: 0.82rem; color: var(--muted); }
-
+ 
 /* MISSION */
 #mission { background: var(--navy-mid); border-bottom: 1px solid var(--border); }
 .mission-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; margin-top: 3rem; border-radius: 16px; overflow: hidden; border: 1px solid var(--border); }
@@ -133,7 +133,7 @@ h2 { font-family: var(--font-head); font-size: clamp(1.8rem, 3.5vw, 2.8rem); fon
 .icon-blue { background: rgba(26,110,252,0.12); }
 .mission-card h3 { font-family: var(--font-head); font-size: 1.2rem; font-weight: 700; color: var(--white); margin-bottom: 0.8rem; }
 .mission-card p { color: var(--muted); font-size: 0.97rem; }
-
+ 
 /* WHO WE ARE */
 #who { padding: 100px 5%; }
 .who-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center; margin-bottom: 5rem; }
@@ -148,14 +148,14 @@ h2 { font-family: var(--font-head); font-size: clamp(1.8rem, 3.5vw, 2.8rem); fon
 .photo-accent span { font-size: 0.75rem; color: var(--muted); }
 .who-photo-stack:hover .photo-card:first-child  { transform: translate(-6px,-4px) rotate(-1deg); }
 .who-photo-stack:hover .photo-card:nth-child(2) { transform: translate(4px, 4px) rotate(0.8deg); }
-
+ 
 .delivery-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px,1fr)); gap: 1rem; }
 .delivery-card { background: var(--card-bg); border: 1px solid var(--border); border-radius: 12px; padding: 1.5rem; display: flex; gap: 1rem; align-items: flex-start; transition: border-color 0.25s, background 0.25s, transform 0.25s; }
 .delivery-card:hover { border-color: rgba(0,200,176,0.3); background: rgba(0,200,176,0.04); transform: translateY(-3px); }
 .delivery-num { font-family: var(--font-head); font-size: 1.6rem; font-weight: 900; color: var(--teal); opacity: 0.35; line-height: 1; min-width: 28px; }
 .delivery-text strong { display: block; font-family: var(--font-head); font-weight: 600; color: var(--white); font-size: 0.92rem; margin-bottom: 4px; }
 .delivery-text span { color: var(--muted); font-size: 0.84rem; }
-
+ 
 /* PROGRAMS */
 #program { background: var(--navy-mid); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
 .programs-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; margin-top: 3rem; }
@@ -196,7 +196,7 @@ h2 { font-family: var(--font-head); font-size: clamp(1.8rem, 3.5vw, 2.8rem); fon
 .money-back { display: flex; align-items: flex-start; gap: 10px; margin-top: 2rem; padding: 1rem 1.4rem; background: rgba(0,200,176,0.05); border: 1px solid rgba(0,200,176,0.15); border-radius: 10px; font-size: 0.85rem; color: var(--muted); }
 .money-back span:first-child { font-size: 1.3rem; flex-shrink: 0; }
 .money-back strong { color: var(--off-white); }
-
+ 
 /* FOUNDER */
 #founder { padding: 100px 5%; }
 .founder-card { display: grid; grid-template-columns: auto 1fr; gap: 3.5rem; align-items: center; background: var(--card-bg); border: 1px solid var(--border); border-radius: 24px; padding: 3.5rem; margin-top: 3rem; position: relative; overflow: hidden; transition: border-color 0.3s; }
@@ -214,7 +214,7 @@ h2 { font-family: var(--font-head); font-size: clamp(1.8rem, 3.5vw, 2.8rem); fon
 .expertise-tags { display: flex; flex-wrap: wrap; gap: 8px; }
 .tag { background: rgba(26,110,252,0.1); border: 1px solid rgba(26,110,252,0.22); color: #7fb3f5; font-size: 0.78rem; padding: 4px 13px; border-radius: 50px; font-weight: 600; transition: background 0.2s, border-color 0.2s; cursor: default; }
 .tag:hover { background: rgba(26,110,252,0.18); border-color: rgba(26,110,252,0.4); }
-
+ 
 /* CONTACT */
 #contact { background: var(--navy-mid); border-top: 1px solid var(--border); }
 .contact-inner { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 4.5rem; align-items: start; }
@@ -233,7 +233,7 @@ h2 { font-family: var(--font-head); font-size: clamp(1.8rem, 3.5vw, 2.8rem); fon
 .form-group textarea { resize: vertical; min-height: 100px; }
 .form-group select option { background: var(--navy-mid); }
 .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
-
+ 
 /* FOOTER */
 footer { background: var(--navy); border-top: 1px solid var(--border); padding: 2.5rem 5%; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; }
 .footer-brand { font-family: var(--font-head); font-weight: 900; color: var(--white); font-size: 1rem; }
@@ -242,13 +242,13 @@ footer { background: var(--navy); border-top: 1px solid var(--border); padding: 
 .footer-links { display: flex; gap: 1.5rem; list-style: none; }
 .footer-links a { color: var(--muted); text-decoration: none; font-size: 0.82rem; transition: color 0.2s; }
 .footer-links a:hover { color: var(--teal); }
-
+ 
 /* SCROLL ANIMATIONS */
 .fade-up { opacity: 0; transform: translateY(32px); transition: opacity 0.65s ease, transform 0.65s ease; }
 .fade-up.visible { opacity: 1; transform: none; }
 .stagger > .fade-up:nth-child(2) { transition-delay: 0.1s; }
 .stagger > .fade-up:nth-child(3) { transition-delay: 0.2s; }
-
+ 
 /* MOBILE */
 @media (max-width: 900px) { .programs-grid { grid-template-columns: 1fr; max-width: 480px; margin-left: auto; margin-right: auto; } }
 @media (max-width: 768px) {
@@ -269,7 +269,7 @@ footer { background: var(--navy); border-top: 1px solid var(--border); padding: 
 </style>
 </head>
 <body>
-
+ 
 <!-- NAV -->
 <nav id="navbar">
   <a href="#hero" class="nav-logo">Virtual<span>InTechAp</span></a>
@@ -284,7 +284,7 @@ footer { background: var(--navy); border-top: 1px solid var(--border); padding: 
     <span></span><span></span><span></span>
   </button>
 </nav>
-
+ 
 <!-- HERO -->
 <section id="hero">
   <div class="hero-bg-img"></div>
@@ -306,7 +306,7 @@ footer { background: var(--navy); border-top: 1px solid var(--border); padding: 
     </div>
   </div>
 </section>
-
+ 
 <!-- STRIP -->
 <div id="strip">
   <div class="strip-grid stagger">
@@ -317,7 +317,7 @@ footer { background: var(--navy); border-top: 1px solid var(--border); padding: 
     <div class="strip-item fade-up"><span class="strip-icon">🏭</span><strong>Corporate Training</strong><span>Custom programs for teams</span></div>
   </div>
 </div>
-
+ 
 <!-- MISSION -->
 <section id="mission">
   <div class="inner">
@@ -338,9 +338,9 @@ footer { background: var(--navy); border-top: 1px solid var(--border); padding: 
     </div>
   </div>
 </section>
-
+ 
 <div class="divider"></div>
-
+ 
 <!-- WHO WE ARE — id="who" is the anchor the nav links to -->
 <section id="who">
   <div class="inner">
@@ -364,7 +364,7 @@ footer { background: var(--navy); border-top: 1px solid var(--border); padding: 
         </div>
       </div>
     </div>
-
+ 
     <div class="section-label" style="margin-bottom:1.2rem">How We Deliver</div>
     <div class="delivery-grid stagger">
       <div class="delivery-card fade-up"><div class="delivery-num">01</div><div class="delivery-text"><strong>On-Site Instruction</strong><span>We come directly to your location for training</span></div></div>
@@ -375,18 +375,18 @@ footer { background: var(--navy); border-top: 1px solid var(--border); padding: 
     </div>
   </div>
 </section>
-
+ 
 <div class="divider"></div>
-
+ 
 <!-- PROGRAMS -->
 <section id="program">
   <div class="inner">
     <div class="section-label">Enrollment</div>
     <h2>Choose Your Program</h2>
     <p class="section-intro">Three tiers designed to match your goals, timeline, and budget. All programs include access to our eLearning portal and Dr. Rodriguez's expertise.</p>
-
+ 
     <div class="programs-grid stagger">
-
+ 
       <!-- Tier 1: Foundation -->
       <div class="prog-card fade-up">
         <div class="prog-photo">
@@ -412,7 +412,7 @@ footer { background: var(--navy); border-top: 1px solid var(--border); padding: 
           <a href="mailto:info@intechap.us?subject=Foundation Track Inquiry" class="prog-cta cta-blue">Get Started →</a>
         </div>
       </div>
-
+ 
       <!-- Tier 2: Professional (featured) -->
       <div class="prog-card featured fade-up">
         <div class="prog-badge">Most Popular</div>
@@ -439,7 +439,7 @@ footer { background: var(--navy); border-top: 1px solid var(--border); padding: 
           <a href="mailto:info@intechap.us?subject=TCAEES Certificate Inquiry" class="prog-cta cta-teal">Enroll Now →</a>
         </div>
       </div>
-
+ 
       <!-- Tier 3: Enterprise -->
       <div class="prog-card fade-up">
         <div class="prog-photo">
@@ -464,18 +464,18 @@ footer { background: var(--navy); border-top: 1px solid var(--border); padding: 
           <a href="mailto:info@intechap.us?subject=Enterprise Training Inquiry" class="prog-cta cta-gold">Request a Quote →</a>
         </div>
       </div>
-
+ 
     </div>
-
+ 
     <div class="money-back fade-up">
       <span>🛡️</span>
       <div><strong>Satisfaction Guarantee</strong> — Week 1: 66% refund · Week 2: 33% refund · No refund after week 3 due to the accelerated nature of the program. Please allow 24 hours for account setup after enrollment.</div>
     </div>
   </div>
 </section>
-
+ 
 <div class="divider"></div>
-
+ 
 <!-- FOUNDER -->
 <section id="founder">
   <div class="inner">
@@ -514,9 +514,9 @@ footer { background: var(--navy); border-top: 1px solid var(--border); padding: 
     </div>
   </div>
 </section>
-
+ 
 <div class="divider"></div>
-
+ 
 <!-- CONTACT -->
 <section id="contact">
   <div class="contact-inner">
@@ -561,7 +561,7 @@ footer { background: var(--navy); border-top: 1px solid var(--border); padding: 
     </div>
   </div>
 </section>
-
+ 
 <!-- FOOTER -->
 <footer>
   <div class="footer-brand">Virtual<span>InTechAp</span> <span style="color:var(--muted);font-weight:300;font-family:var(--font-body);font-size:0.82rem">· Institute of Technology Applications</span></div>
@@ -573,18 +573,18 @@ footer { background: var(--navy); border-top: 1px solid var(--border); padding: 
   </ul>
   <div class="footer-copy">© 1998–2025 Virtual InTechAp · All rights reserved · Arizona, USA</div>
 </footer>
-
+ 
 <script>
 // Mobile nav toggle
 const toggle = document.getElementById('nav-toggle');
 const navLinks = document.getElementById('nav-links');
 toggle.addEventListener('click', () => navLinks.classList.toggle('open'));
 navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => navLinks.classList.remove('open')));
-
+ 
 // Navbar scroll class
 const nav = document.getElementById('navbar');
 window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.scrollY > 40), {passive:true});
-
+ 
 // Scroll-offset smooth scroll for ALL anchor links (fixes Who We Are + all nav)
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
   anchor.addEventListener('click', function(e) {
@@ -597,7 +597,7 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     }
   });
 });
-
+ 
 // Intersection observer for fade-up animations
 const observer = new IntersectionObserver(entries => {
   entries.forEach(entry => {
@@ -608,7 +608,7 @@ const observer = new IntersectionObserver(entries => {
   });
 }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
 document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
-
+ 
 // Form submit feedback
 function handleSubmit() {
   const btn = document.getElementById('submit-btn');
