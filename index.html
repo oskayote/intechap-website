@@ -484,22 +484,31 @@ footer { background: var(--navy); border-top: 1px solid var(--border); padding: 
     <div class="founder-card fade-up">
       <div class="founder-glow"></div>
       <div class="founder-avatar">
-        <img src="https://intechap.us/assets/images/New_Picture.192101841_std.png" alt="Dr. Oscar Rodriguez"
-          onerror="this.style.display='none';this.parentElement.querySelector('.founder-initials').style.display='flex';">
+        <img id="founder-photo"
+          src="https://img-c.udemyassets.com/user/200x200/oscarrodriguez4.jpg"
+          alt="Dr. Oscar Rodriguez"
+          onerror="this.src='https://intechap.us/assets/images/New_Picture.192101841_std.png';this.onerror=function(){this.style.display='none';document.querySelector('.founder-initials').style.display='flex';};">
         <div class="founder-initials" style="display:none">OR</div>
       </div>
       <div class="founder-info">
-        <h3>Dr. Oscar Rodriguez</h3>
-        <div class="founder-title">President &amp; Founder · Consultant &amp; University Professor in STEM</div>
-        <p class="founder-bio">Dr. Rodriguez founded Virtual InTechAp to satisfy the training and education needs of individuals and organizations not served by traditional institutions. With over 20 years of combined experience across industry, academia, and nonprofits, DrO brings deep expertise in cutting-edge STEM disciplines — delivering world-class engineering education directly to learners around the globe.</p>
+        <h3>Oscar "Dr. O" Rodriguez</h3>
+        <div class="founder-title">President &amp; Founder · Academy Professor &amp; STEM International Education Consultant</div>
+        <p class="founder-bio">
+          Dr. O's academic credentials span international teaching and consulting in engineering and technology. He holds undergraduate degrees in Engineering Technology (Automation, Robotics &amp; Instrumentation), a Master of Science in Electronics &amp; Computers, and a Specialist and Doctoral degree in Engineering Technology Education. He also holds professional certifications in electronics manufacturing, advanced manufacturing, fiber optics, renewable energy, robotics, and control systems cybersecurity.
+        </p>
+        <p class="founder-bio" style="margin-top:0.7rem">
+          Dr. Rodriguez has taught engineering and technology for nearly 15 years at corporate sites and college campuses, using online, distance, and computer-assisted instructional methods. He has developed and implemented numerous STEM projects across the U.S. — and loves sharing with lifelong learners around the world.
+        </p>
         <div class="expertise-tags">
-          <span class="tag">Automation</span>
+          <span class="tag">Automation &amp; Robotics</span>
+          <span class="tag">Electronics &amp; Computers</span>
           <span class="tag">Mechatronics</span>
-          <span class="tag">Electronics</span>
-          <span class="tag">Robotics</span>
-          <span class="tag">Advanced Manufacturing</span>
+          <span class="tag">Fiber Optics</span>
           <span class="tag">Renewable Energy</span>
+          <span class="tag">Advanced Manufacturing</span>
+          <span class="tag">Cybersecurity (Control Systems)</span>
           <span class="tag">STEM Education</span>
+          <span class="tag">Distance Learning</span>
         </div>
       </div>
     </div>
