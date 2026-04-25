@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Enterprise Corporate Training — Virtual InTechAp</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Exo+2:wght@300;400;600;700;800;900&family=Source+Sans+3:wght@300;400;600&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --navy: #040c1b; --navy-mid: #081628; --navy-light: #0d2040;
+  --blue: #1a6efc; --teal: #00c8b0; --gold: #f5a623;
+  --accent: #f5a623; --accent-dim: rgba(245,166,35,0.1); --accent-border: rgba(245,166,35,0.28);
+  --white: #fff; --off-white: #dde8f5; --muted: #7f9abc;
+  --border: rgba(255,255,255,0.07); --card-bg: rgba(255,255,255,0.04);
+  --font-head: 'Exo 2', sans-serif; --font-body: 'Source Sans 3', sans-serif;
+}
+html { scroll-behavior: smooth; }
+body { background: var(--navy); color: var(--off-white); font-family: var(--font-body); font-size: 17px; line-height: 1.7; overflow-x: hidden; }
+
+nav { position: fixed; top: 0; left: 0; right: 0; z-index: 200; display: flex; align-items: center; justify-content: space-between; padding: 0 5%; height: 68px; background: rgba(4,12,27,0.95); backdrop-filter: blur(18px); border-bottom: 1px solid var(--border); }
+.nav-logo { font-family: var(--font-head); font-weight: 900; font-size: 1.1rem; color: var(--white); text-decoration: none; }
+.nav-logo span { color: var(--teal); }
+.nav-back { display: flex; align-items: center; gap: 8px; color: var(--muted); text-decoration: none; font-size: 0.85rem; font-weight: 600; transition: color 0.2s; }
+.nav-back:hover { color: var(--accent); }
+.nav-back::before { content: '←'; font-size: 1rem; }
+
+.page-hero { padding: 130px 5% 80px; position: relative; overflow: hidden; border-bottom: 1px solid var(--border); }
+.hero-glow { position: absolute; width: 700px; height: 500px; background: radial-gradient(ellipse, rgba(245,166,35,0.1) 0%, transparent 70%); top: -100px; right: -100px; pointer-events: none; }
+.hero-grid { position: absolute; inset: 0; background-image: linear-gradient(rgba(245,166,35,0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(245,166,35,0.04) 1px, transparent 1px); background-size: 56px 56px; mask-image: radial-gradient(ellipse 100% 100% at 100% 0%, black 20%, transparent 70%); }
+.hero-inner { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: 1fr auto; gap: 4rem; align-items: center; position: relative; }
+.tier-badge { display: inline-flex; align-items: center; gap: 8px; background: var(--accent-dim); border: 1px solid var(--accent-border); color: var(--gold); font-size: 0.75rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; padding: 6px 16px; border-radius: 50px; margin-bottom: 1.2rem; }
+.tier-badge::before { content: ''; width: 6px; height: 6px; background: var(--gold); border-radius: 50%; }
+h1 { font-family: var(--font-head); font-size: clamp(2rem, 4.5vw, 3.4rem); font-weight: 900; color: var(--white); letter-spacing: -1.5px; line-height: 1.1; margin-bottom: 1.2rem; }
+h1 span { color: var(--gold); }
+.hero-desc { color: var(--muted); font-size: 1.08rem; max-width: 580px; margin-bottom: 2rem; line-height: 1.7; }
+.hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; }
+.btn-primary { display: inline-flex; align-items: center; gap: 8px; background: var(--accent); color: var(--navy); font-family: var(--font-head); font-weight: 700; font-size: 0.92rem; text-decoration: none; padding: 14px 30px; border-radius: 8px; border: none; cursor: pointer; transition: transform 0.2s, box-shadow 0.2s; }
+.btn-primary:hover { transform: translateY(-2px); box-shadow: 0 14px 36px rgba(245,166,35,0.3); }
+.btn-outline { display: inline-block; background: transparent; color: var(--off-white); font-family: var(--font-head); font-weight: 600; font-size: 0.92rem; text-decoration: none; padding: 13px 28px; border-radius: 8px; border: 1px solid rgba(255,255,255,0.18); transition: border-color 0.2s, background 0.2s; }
+.btn-outline:hover { border-color: var(--accent); background: var(--accent-dim); }
+.quote-card { background: var(--card-bg); border: 1px solid var(--accent-border); border-radius: 20px; padding: 2.5rem; text-align: center; min-width: 220px; }
+.quote-card .label { font-size: 0.75rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 0.8rem; }
+.quote-card .headline { font-family: var(--font-head); font-size: 1.6rem; font-weight: 900; color: var(--gold); line-height: 1.1; margin-bottom: 0.6rem; }
+.quote-card .sub { font-size: 0.84rem; color: var(--muted); margin-bottom: 1.5rem; line-height: 1.5; }
+.quote-card .quote-btn { display: block; background: var(--accent); color: var(--navy); font-family: var(--font-head); font-weight: 700; font-size: 0.88rem; text-decoration: none; padding: 12px 20px; border-radius: 8px; transition: opacity 0.2s; }
+.quote-card .quote-btn:hover { opacity: 0.85; }
+
+.quick-facts { background: var(--navy-mid); border-bottom: 1px solid var(--border); padding: 40px 5%; }
+.facts-grid { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 1px; }
+.fact-item { padding: 1.5rem; text-align: center; border-right: 1px solid var(--border); }
+.fact-item:last-child { border-right: none; }
+.fact-num { font-family: var(--font-head); font-size: 1.7rem; font-weight: 900; color: var(--gold); margin-bottom: 4px; }
+.fact-label { font-size: 0.78rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.07em; }
+
+section { padding: 80px 5%; }
+.inner { max-width: 1100px; margin: 0 auto; }
+.section-label { font-size: 0.73rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.7rem; }
+h2 { font-family: var(--font-head); font-size: clamp(1.6rem, 3vw, 2.4rem); font-weight: 800; color: var(--white); letter-spacing: -0.6px; line-height: 1.15; margin-bottom: 1rem; }
+.section-intro { color: var(--muted); font-size: 1.02rem; max-width: 620px; line-height: 1.72; }
+.divider { height: 1px; background: linear-gradient(90deg, transparent, rgba(245,166,35,0.3), transparent); }
+
+/* INDUSTRIES */
+.industry-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin-top: 2rem; }
+.industry-card { background: var(--card-bg); border: 1px solid var(--border); border-radius: 14px; padding: 1.6rem; text-align: center; transition: border-color 0.2s, transform 0.2s; }
+.industry-card:hover { border-color: var(--accent-border); transform: translateY(-3px); }
+.industry-icon { font-size: 2rem; margin-bottom: 0.8rem; display: block; }
+.industry-card h3 { font-family: var(--font-head); font-weight: 700; color: var(--white); font-size: 0.95rem; margin-bottom: 0.3rem; }
+.industry-card p { color: var(--muted); font-size: 0.82rem; }
+
+/* DELIVERY */
+.delivery-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-top: 2rem; }
+.delivery-big-card { background: var(--card-bg); border: 1px solid var(--border); border-radius: 16px; padding: 2rem; transition: border-color 0.2s; }
+.delivery-big-card:hover { border-color: var(--accent-border); }
+.delivery-big-card h3 { font-family: var(--font-head); font-weight: 800; color: var(--white); font-size: 1.05rem; margin-bottom: 0.8rem; display: flex; align-items: center; gap: 10px; }
+.delivery-big-card p { color: var(--muted); font-size: 0.88rem; line-height: 1.65; margin-bottom: 1rem; }
+.delivery-points { display: flex; flex-direction: column; gap: 0.45rem; }
+.delivery-point { font-size: 0.84rem; color: var(--muted); display: flex; align-items: flex-start; gap: 8px; }
+.delivery-point::before { content: '›'; color: var(--gold); font-weight: 700; flex-shrink: 0; }
+
+/* CUSTOM PROCESS */
+.process-steps { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.5rem; margin-top: 2rem; position: relative; }
+.process-step { text-align: center; }
+.step-circle { width: 60px; height: 60px; border-radius: 50%; background: var(--accent-dim); border: 2px solid var(--accent-border); display: flex; align-items: center; justify-content: center; font-family: var(--font-head); font-weight: 900; font-size: 1.1rem; color: var(--gold); margin: 0 auto 1rem; transition: background 0.2s, box-shadow 0.2s; }
+.process-step:hover .step-circle { background: rgba(245,166,35,0.2); box-shadow: 0 0 20px rgba(245,166,35,0.2); }
+.process-step h3 { font-family: var(--font-head); font-weight: 700; color: var(--white); font-size: 0.95rem; margin-bottom: 0.4rem; }
+.process-step p { color: var(--muted); font-size: 0.84rem; line-height: 1.55; }
+
+/* CURRICULUM */
+.curriculum-areas { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1rem; margin-top: 2rem; }
+.curriculum-area { background: var(--card-bg); border: 1px solid var(--border); border-radius: 14px; padding: 1.6rem; transition: border-color 0.2s; }
+.curriculum-area:hover { border-color: var(--accent-border); }
+.area-icon { font-size: 1.5rem; margin-bottom: 0.7rem; display: block; }
+.curriculum-area h3 { font-family: var(--font-head); font-weight: 700; color: var(--white); font-size: 0.95rem; margin-bottom: 0.6rem; }
+.area-topics { list-style: none; display: flex; flex-direction: column; gap: 0.35rem; }
+.area-topics li { font-size: 0.83rem; color: var(--muted); display: flex; align-items: flex-start; gap: 7px; }
+.area-topics li::before { content: ''; width: 4px; height: 4px; background: var(--gold); border-radius: 50%; flex-shrink: 0; margin-top: 8px; opacity: 0.6; }
+
+/* WHY */
+.why-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1rem; margin-top: 2rem; }
+.why-card { background: var(--card-bg); border: 1px solid var(--border); border-radius: 14px; padding: 1.6rem; transition: border-color 0.2s, transform 0.2s; }
+.why-card:hover { border-color: var(--accent-border); transform: translateY(-3px); }
+.why-icon { font-size: 1.6rem; margin-bottom: 0.8rem; display: block; }
+.why-card h3 { font-family: var(--font-head); font-weight: 700; color: var(--white); font-size: 0.95rem; margin-bottom: 0.4rem; }
+.why-card p { color: var(--muted); font-size: 0.86rem; line-height: 1.6; }
+
+/* CONTACT FORM */
+.contact-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: start; }
+.contact-info h3 { font-family: var(--font-head); font-weight: 800; color: var(--white); font-size: 1.2rem; margin-bottom: 1rem; }
+.contact-info p { color: var(--muted); font-size: 0.95rem; line-height: 1.7; margin-bottom: 1.5rem; }
+.contact-detail { display: flex; align-items: center; gap: 10px; font-size: 0.9rem; margin-bottom: 0.7rem; }
+.contact-detail a { color: var(--gold); text-decoration: none; }
+.contact-detail a:hover { text-decoration: underline; }
+.contact-form { background: var(--card-bg); border: 1px solid var(--border); border-radius: 20px; padding: 2.5rem; }
+.contact-form h3 { font-family: var(--font-head); font-weight: 800; color: var(--white); font-size: 1.2rem; margin-bottom: 1.5rem; }
+.form-group { display: flex; flex-direction: column; gap: 6px; margin-bottom: 1rem; }
+.form-group label { font-size: 0.78rem; font-weight: 600; color: var(--muted); text-transform: uppercase; letter-spacing: 0.07em; }
+.form-group input, .form-group textarea, .form-group select { background: rgba(255,255,255,0.05); border: 1px solid var(--border); border-radius: 9px; padding: 12px 16px; color: var(--off-white); font-family: var(--font-body); font-size: 0.95rem; outline: none; transition: border-color 0.2s; width: 100%; }
+.form-group input:focus, .form-group textarea:focus, .form-group select:focus { border-color: var(--gold); }
+.form-group textarea { resize: vertical; min-height: 100px; }
+.form-group select option { background: var(--navy-mid); }
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+
+footer { background: var(--navy); border-top: 1px solid var(--border); padding: 2rem 5%; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; }
+.footer-brand { font-family: var(--font-head); font-weight: 900; color: var(--white); font-size: 0.95rem; }
+.footer-brand span { color: var(--teal); }
+.footer-copy { font-size: 0.78rem; color: var(--muted); }
+
+.fade-up { opacity: 0; transform: translateY(28px); transition: opacity 0.6s ease, transform 0.6s ease; }
+.fade-up.visible { opacity: 1; transform: none; }
+
+@media (max-width: 768px) {
+  .hero-inner { grid-template-columns: 1fr; }
+  .delivery-layout, .contact-layout { grid-template-columns: 1fr; }
+  .form-row { grid-template-columns: 1fr; }
+  footer { flex-direction: column; text-align: center; }
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-logo">Virtual<span>InTechAp</span></a>
+  <a href="index.html#program" class="nav-back">Back to Programs</a>
+</nav>
+
+<!-- HERO -->
+<div class="page-hero">
+  <div class="hero-glow"></div>
+  <div class="hero-grid"></div>
+  <div class="hero-inner">
+    <div>
+      <div class="tier-badge">Enterprise / Corporate</div>
+      <h1>Custom Organization<br><span>Training Programs</span></h1>
+      <p class="hero-desc">Fully tailored applied engineering training designed around your team, your industry, and your goals. We come to you — or deliver online — with curriculum built specifically for your organization.</p>
+      <div class="hero-actions">
+        <a href="#contact-form" class="btn-primary">Request a Quote →</a>
+        <a href="index.html#contact" class="btn-outline">Call Dr. O Directly</a>
+      </div>
+    </div>
+    <div class="quote-card">
+      <div class="label">Pricing</div>
+      <div class="headline">Custom Quote</div>
+      <div class="sub">Tailored to your team size,<br>scope, and delivery format</div>
+      <a href="#contact-form" class="quote-btn">Get Your Quote →</a>
+    </div>
+  </div>
+</div>
+
+<!-- QUICK FACTS -->
+<div class="quick-facts">
+  <div class="facts-grid">
+    <div class="fact-item"><div class="fact-num">100+</div><div class="fact-label">Courses Available</div></div>
+    <div class="fact-item"><div class="fact-num">5</div><div class="fact-label">Delivery Methods</div></div>
+    <div class="fact-item"><div class="fact-num">20+</div><div class="fact-label">Years Experience</div></div>
+    <div class="fact-item"><div class="fact-num">∞</div><div class="fact-label">Team Size Options</div></div>
+    <div class="fact-item"><div class="fact-num">100%</div><div class="fact-label">Customizable</div></div>
+  </div>
+</div>
+
+<!-- INDUSTRIES -->
+<section>
+  <div class="inner">
+    <div class="section-label">Who We Serve</div>
+    <h2>Industries &amp; Organizations We Train</h2>
+    <p class="section-intro">Virtual InTechAp has developed and delivered training programs for a wide range of industries that rely on applied engineering skills.</p>
+    <div class="industry-grid fade-up">
+      <div class="industry-card"><span class="industry-icon">🏭</span><h3>Manufacturing</h3><p>Automation, quality control, and production line technicians</p></div>
+      <div class="industry-card"><span class="industry-icon">⚡</span><h3>Energy &amp; Utilities</h3><p>Renewable energy, power systems, and electrical maintenance teams</p></div>
+      <div class="industry-card"><span class="industry-icon">🤖</span><h3>Robotics &amp; Automation</h3><p>Engineering teams working with robotic cells and automated systems</p></div>
+      <div class="industry-card"><span class="industry-icon">✈️</span><h3>Aerospace &amp; Defense</h3><p>Electronics assembly, wiring harness, and avionics technicians</p></div>
+      <div class="industry-card"><span class="industry-icon">🏥</span><h3>Healthcare Technology</h3><p>Biomedical equipment maintenance and electronics support staff</p></div>
+      <div class="industry-card"><span class="industry-icon">🎓</span><h3>Educational Institutions</h3><p>Community colleges, trade schools, and STEM programs seeking applied curriculum</p></div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- DELIVERY -->
+<section style="background: var(--navy-mid);">
+  <div class="inner">
+    <div class="section-label">Delivery Options</div>
+    <h2>We Come to You — or You Come Online</h2>
+    <p class="section-intro">We offer multiple delivery formats to fit your organization's structure, geography, and schedule.</p>
+    <div class="delivery-layout fade-up">
+      <div class="delivery-big-card">
+        <h3><span>📍</span> On-Site at Your Facility</h3>
+        <p>Dr. Rodriguez and our instructors travel directly to your organization. We set up in your facility, train in your environment, and work with your actual equipment where applicable.</p>
+        <div class="delivery-points">
+          <div class="delivery-point">Training delivered at your plant, office, or campus</div>
+          <div class="delivery-point">Instruction uses your actual systems and equipment</div>
+          <div class="delivery-point">Available throughout the United States</div>
+          <div class="delivery-point">Multiple sessions or full week-long intensives</div>
+          <div class="delivery-point">Best for hands-on, manufacturing, or lab environments</div>
+        </div>
+      </div>
+      <div class="delivery-big-card">
+        <h3><span>🌐</span> Live Online / Webinar</h3>
+        <p>Our instructors deliver live training via webinar platforms. Your team joins from anywhere — a single room, multiple locations, or individual remote setups.</p>
+        <div class="delivery-points">
+          <div class="delivery-point">Flexible scheduling across time zones</div>
+          <div class="delivery-point">Full live interaction and Q&amp;A</div>
+          <div class="delivery-point">Hands-on demos streamed in real-time</div>
+          <div class="delivery-point">Ideal for geographically distributed teams</div>
+          <div class="delivery-point">Recorded sessions available for replay</div>
+        </div>
+      </div>
+      <div class="delivery-big-card">
+        <h3><span>🖥️</span> Self-Paced eLearning (Group)</h3>
+        <p>Deploy our eLearning courses to your entire team. Each member gets their own portal account and completes training on their individual schedule.</p>
+        <div class="delivery-points">
+          <div class="delivery-point">Individual accounts for each team member</div>
+          <div class="delivery-point">Progress tracking and completion reporting</div>
+          <div class="delivery-point">Scalable to any team size</div>
+          <div class="delivery-point">No scheduling required — train anytime</div>
+          <div class="delivery-point">Group pricing available</div>
+        </div>
+      </div>
+      <div class="delivery-big-card">
+        <h3><span>🔀</span> Blended / Hybrid</h3>
+        <p>Combine eLearning for foundational theory with live sessions for applied practice. The most effective format for comprehensive, lasting skill development.</p>
+        <div class="delivery-points">
+          <div class="delivery-point">Structured eLearning pre-work before live sessions</div>
+          <div class="delivery-point">Live coaching focuses on application and Q&amp;A</div>
+          <div class="delivery-point">Maximizes time efficiency for busy teams</div>
+          <div class="delivery-point">Customizable ratio of online vs. live instruction</div>
+          <div class="delivery-point">Recommended format for most organizations</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- CURRICULUM AREAS -->
+<section>
+  <div class="inner">
+    <div class="section-label">Curriculum</div>
+    <h2>Training Areas We Can Customize For You</h2>
+    <p class="section-intro">We draw from 100+ courses across applied engineering technology to build a program that directly addresses your team's skill gaps and operational needs.</p>
+    <div class="curriculum-areas fade-up">
+      <div class="curriculum-area">
+        <span class="area-icon">⚡</span>
+        <h3>Applied Electronics</h3>
+        <ul class="area-topics">
+          <li>DC &amp; AC circuit analysis and troubleshooting</li>
+          <li>Test equipment: multimeter, oscilloscope, function generator</li>
+          <li>Electronic component identification and selection</li>
+          <li>Circuit prototyping and breadboarding</li>
+        </ul>
+      </div>
+      <div class="curriculum-area">
+        <span class="area-icon">🤖</span>
+        <h3>Automation &amp; Mechatronics</h3>
+        <ul class="area-topics">
+          <li>PLC programming and industrial control systems</li>
+          <li>Sensors, actuators, and control elements</li>
+          <li>Robotic systems integration and programming</li>
+          <li>HMI design and operator interface</li>
+        </ul>
+      </div>
+      <div class="curriculum-area">
+        <span class="area-icon">🏭</span>
+        <h3>Advanced Manufacturing</h3>
+        <ul class="area-topics">
+          <li>Electronics manufacturing processes (IPC standards)</li>
+          <li>Quality assurance and inspection techniques</li>
+          <li>Wiring harness assembly and testing</li>
+          <li>Production line troubleshooting methodologies</li>
+        </ul>
+      </div>
+      <div class="curriculum-area">
+        <span class="area-icon">☀️</span>
+        <h3>Renewable Energy Systems</h3>
+        <ul class="area-topics">
+          <li>Solar PV system design and installation</li>
+          <li>Wind energy fundamentals and systems</li>
+          <li>Energy storage and battery systems</li>
+          <li>Grid-tie and off-grid system configurations</li>
+        </ul>
+      </div>
+      <div class="curriculum-area">
+        <span class="area-icon">💡</span>
+        <h3>Fiber Optics &amp; Communications</h3>
+        <ul class="area-topics">
+          <li>Fiber optic fundamentals and light theory</li>
+          <li>Cable types, connectors, and splicing</li>
+          <li>Testing with OTDR and power meters</li>
+          <li>Network infrastructure and installation</li>
+        </ul>
+      </div>
+      <div class="curriculum-area">
+        <span class="area-icon">🔒</span>
+        <h3>Control Systems Cybersecurity</h3>
+        <ul class="area-topics">
+          <li>ICS/SCADA security fundamentals</li>
+          <li>Network segmentation for industrial systems</li>
+          <li>Vulnerability assessment for control environments</li>
+          <li>Incident response for OT environments</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- CUSTOM PROCESS -->
+<section style="background: var(--navy-mid);">
+  <div class="inner">
+    <div class="section-label">Our Process</div>
+    <h2>How We Build Your Custom Program</h2>
+    <div class="process-steps fade-up">
+      <div class="process-step">
+        <div class="step-circle">1</div>
+        <h3>Discovery Call</h3>
+        <p>We meet with your team to understand your goals, skill gaps, team size, timeline, and preferred delivery format.</p>
+      </div>
+      <div class="process-step">
+        <div class="step-circle">2</div>
+        <h3>Needs Assessment</h3>
+        <p>Dr. Rodriguez reviews your operational context and designs a curriculum map tailored to your industry and workforce.</p>
+      </div>
+      <div class="process-step">
+        <div class="step-circle">3</div>
+        <h3>Proposal &amp; Quote</h3>
+        <p>You receive a detailed proposal including curriculum outline, delivery schedule, pricing, and expected outcomes.</p>
+      </div>
+      <div class="process-step">
+        <div class="step-circle">4</div>
+        <h3>Training Delivered</h3>
+        <p>We deliver training on-site, online, or both — managing all logistics so your team can focus on learning.</p>
+      </div>
+      <div class="process-step">
+        <div class="step-circle">5</div>
+        <h3>Reporting &amp; Certification</h3>
+        <p>You receive completion reports and your team earns their Virtual InTechAp certificates upon program completion.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- WHY INTECHAP -->
+<section>
+  <div class="inner">
+    <div class="section-label">Why Virtual InTechAp</div>
+    <h2>What Sets Our Corporate Training Apart</h2>
+    <div class="why-grid fade-up">
+      <div class="why-card"><span class="why-icon">🎯</span><h3>100% Customized</h3><p>No generic off-the-shelf content. Every program is built around your specific workforce, equipment, and operational goals.</p></div>
+      <div class="why-card"><span class="why-icon">👨‍🏫</span><h3>Taught by Dr. O Himself</h3><p>Your team learns directly from Dr. Rodriguez — 20+ years of industry, academic, and consulting experience, not a junior trainer reading slides.</p></div>
+      <div class="why-card"><span class="why-icon">🌍</span><h3>International Experience</h3><p>We've developed and delivered STEM and engineering programs across the U.S. and internationally, serving diverse industries and cultures.</p></div>
+      <div class="why-card"><span class="why-icon">📊</span><h3>Progress Reporting</h3><p>Full visibility into your team's training progress. Completion tracking, assessment scores, and certification documentation provided.</p></div>
+      <div class="why-card"><span class="why-icon">🔄</span><h3>Flexible Scheduling</h3><p>We work around your production schedule, shift patterns, and operational constraints — not the other way around.</p></div>
+      <div class="why-card"><span class="why-icon">📜</span><h3>Group Certification</h3><p>Every participant earns a Virtual InTechAp certificate upon completion — documented proof of skills for your HR and compliance records.</p></div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- CONTACT FORM -->
+<section id="contact-form" style="background: var(--navy-mid);">
+  <div class="inner">
+    <div class="contact-layout">
+      <div class="contact-info fade-up">
+        <div class="section-label">Get a Quote</div>
+        <h2>Tell Us About Your Organization</h2>
+        <p>Fill out the form and Dr. Rodriguez will personally follow up within 1–2 business days to discuss your needs and put together a customized proposal.</p>
+        <div class="contact-detail">📧 <a href="mailto:info@intechap.us">info@intechap.us</a></div>
+        <div class="contact-detail">📞 <a href="tel:+13176413282">+1 (317) 641-3282</a></div>
+        <div class="contact-detail">📍 Arizona, United States</div>
+        <br>
+        <p style="font-size:0.88rem">We serve organizations across the United States and internationally. Remote and on-site delivery available nationwide.</p>
+      </div>
+      <div class="contact-form fade-up">
+        <h3>Enterprise Training Inquiry</h3>
+        <div class="form-row">
+          <div class="form-group"><label>First Name</label><input type="text" placeholder="First"></div>
+          <div class="form-group"><label>Last Name</label><input type="text" placeholder="Last"></div>
+        </div>
+        <div class="form-group"><label>Work Email</label><input type="email" placeholder="you@company.com"></div>
+        <div class="form-group"><label>Organization Name</label><input type="text" placeholder="Your company or institution"></div>
+        <div class="form-group"><label>Industry</label>
+          <select>
+            <option value="">Select your industry...</option>
+            <option>Manufacturing</option>
+            <option>Energy &amp; Utilities</option>
+            <option>Robotics &amp; Automation</option>
+            <option>Aerospace &amp; Defense</option>
+            <option>Healthcare Technology</option>
+            <option>Educational Institution</option>
+            <option>Government / Nonprofit</option>
+            <option>Other</option>
+          </select>
+        </div>
+        <div class="form-group"><label>Estimated Team Size</label>
+          <select>
+            <option value="">Select team size...</option>
+            <option>1–5 people</option>
+            <option>6–15 people</option>
+            <option>16–30 people</option>
+            <option>31–50 people</option>
+            <option>50+ people</option>
+          </select>
+        </div>
+        <div class="form-group"><label>Preferred Delivery</label>
+          <select>
+            <option value="">Select delivery format...</option>
+            <option>On-Site at Our Facility</option>
+            <option>Live Online / Webinar</option>
+            <option>Self-Paced eLearning (Group)</option>
+            <option>Blended / Hybrid</option>
+            <option>Not Sure — Need Guidance</option>
+          </select>
+        </div>
+        <div class="form-group"><label>Training Goals &amp; Details</label><textarea placeholder="Describe your team's skill gaps, the topics you want covered, your timeline, and any other details that will help us build the right program..."></textarea></div>
+        <button class="btn-primary" id="submit-btn" onclick="handleSubmit()" style="width:100%;justify-content:center">Submit Enterprise Inquiry →</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-brand">Virtual<span>InTechAp</span></div>
+  <div class="footer-copy">© 1998–2025 Virtual InTechAp · All rights reserved · Arizona, USA</div>
+</footer>
+
+<script>
+function handleSubmit() {
+  const btn = document.getElementById('submit-btn');
+  btn.textContent = '✓ Inquiry Submitted! Dr. O will be in touch soon.';
+  btn.style.background = '#d4891a';
+  btn.disabled = true;
+  setTimeout(() => { btn.innerHTML = 'Submit Enterprise Inquiry →'; btn.style.background = ''; btn.disabled = false; }, 4000);
+}
+const obs = new IntersectionObserver(entries => { entries.forEach(e => { if(e.isIntersecting){e.target.classList.add('visible');obs.unobserve(e.target);}}); }, {threshold:0.1,rootMargin:'0px 0px -40px 0px'});
+document.querySelectorAll('.fade-up').forEach(el => obs.observe(el));
+</script>
+</body>
+</html>

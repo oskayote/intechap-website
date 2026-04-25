@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TCAEES Professional Certificate — Virtual InTechAp</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Exo+2:wght@300;400;600;700;800;900&family=Source+Sans+3:wght@300;400;600&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --navy: #040c1b; --navy-mid: #081628; --navy-light: #0d2040;
+  --blue: #1a6efc; --teal: #00c8b0; --gold: #f5a623;
+  --accent: #00c8b0; --accent-dim: rgba(0,200,176,0.1); --accent-border: rgba(0,200,176,0.28);
+  --white: #fff; --off-white: #dde8f5; --muted: #7f9abc;
+  --border: rgba(255,255,255,0.07); --card-bg: rgba(255,255,255,0.04);
+  --font-head: 'Exo 2', sans-serif; --font-body: 'Source Sans 3', sans-serif;
+}
+html { scroll-behavior: smooth; }
+body { background: var(--navy); color: var(--off-white); font-family: var(--font-body); font-size: 17px; line-height: 1.7; overflow-x: hidden; }
+
+nav { position: fixed; top: 0; left: 0; right: 0; z-index: 200; display: flex; align-items: center; justify-content: space-between; padding: 0 5%; height: 68px; background: rgba(4,12,27,0.95); backdrop-filter: blur(18px); border-bottom: 1px solid var(--border); }
+.nav-logo { font-family: var(--font-head); font-weight: 900; font-size: 1.1rem; color: var(--white); text-decoration: none; }
+.nav-logo span { color: var(--teal); }
+.nav-back { display: flex; align-items: center; gap: 8px; color: var(--muted); text-decoration: none; font-size: 0.85rem; font-weight: 600; transition: color 0.2s; }
+.nav-back:hover { color: var(--accent); }
+.nav-back::before { content: '←'; font-size: 1rem; }
+
+.page-hero { padding: 130px 5% 80px; position: relative; overflow: hidden; border-bottom: 1px solid var(--border); }
+.hero-glow { position: absolute; width: 800px; height: 600px; background: radial-gradient(ellipse, rgba(0,200,176,0.12) 0%, transparent 70%); top: -150px; right: -150px; pointer-events: none; }
+.hero-grid { position: absolute; inset: 0; background-image: linear-gradient(rgba(0,200,176,0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(0,200,176,0.04) 1px, transparent 1px); background-size: 56px 56px; mask-image: radial-gradient(ellipse 100% 100% at 100% 0%, black 20%, transparent 70%); }
+.hero-inner { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: 1fr auto; gap: 4rem; align-items: center; position: relative; }
+.tier-badge { display: inline-flex; align-items: center; gap: 8px; background: var(--accent-dim); border: 1px solid var(--accent-border); color: var(--teal); font-size: 0.75rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; padding: 6px 16px; border-radius: 50px; margin-bottom: 1.2rem; }
+.tier-badge::before { content: ''; width: 6px; height: 6px; background: var(--teal); border-radius: 50%; animation: pulse 2s infinite; }
+@keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:0.4;transform:scale(0.6)} }
+h1 { font-family: var(--font-head); font-size: clamp(2rem, 4.5vw, 3.4rem); font-weight: 900; color: var(--white); letter-spacing: -1.5px; line-height: 1.1; margin-bottom: 1.2rem; }
+h1 span { color: var(--teal); }
+.hero-desc { color: var(--muted); font-size: 1.08rem; max-width: 580px; margin-bottom: 2rem; line-height: 1.7; }
+.hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; }
+.btn-primary { display: inline-flex; align-items: center; gap: 8px; background: var(--accent); color: var(--navy); font-family: var(--font-head); font-weight: 700; font-size: 0.92rem; text-decoration: none; padding: 14px 30px; border-radius: 8px; border: none; cursor: pointer; transition: transform 0.2s, box-shadow 0.2s; }
+.btn-primary:hover { transform: translateY(-2px); box-shadow: 0 14px 36px rgba(0,200,176,0.35); }
+.btn-outline { display: inline-block; background: transparent; color: var(--off-white); font-family: var(--font-head); font-weight: 600; font-size: 0.92rem; text-decoration: none; padding: 13px 28px; border-radius: 8px; border: 1px solid rgba(255,255,255,0.18); transition: border-color 0.2s, background 0.2s; }
+.btn-outline:hover { border-color: var(--accent); background: var(--accent-dim); }
+.price-card { background: var(--card-bg); border: 1px solid var(--accent-border); border-radius: 20px; padding: 2.2rem; text-align: center; min-width: 210px; box-shadow: 0 0 40px rgba(0,200,176,0.08); }
+.popular-tag { display: inline-block; background: var(--teal); color: var(--navy); font-size: 0.7rem; font-weight: 800; letter-spacing: 0.08em; text-transform: uppercase; padding: 4px 12px; border-radius: 50px; margin-bottom: 1rem; }
+.price-card .was { font-size: 0.82rem; color: var(--muted); text-decoration: line-through; margin-bottom: 4px; }
+.price-card .amount { font-family: var(--font-head); font-size: 3rem; font-weight: 900; color: var(--white); line-height: 1; margin-bottom: 0.3rem; }
+.price-card .sub { font-size: 0.82rem; color: var(--muted); margin-bottom: 1.2rem; }
+.price-card .enroll-btn { display: block; background: var(--accent); color: var(--navy); font-family: var(--font-head); font-weight: 700; font-size: 0.88rem; text-decoration: none; padding: 12px 20px; border-radius: 8px; transition: opacity 0.2s; }
+.price-card .enroll-btn:hover { opacity: 0.85; }
+
+.quick-facts { background: var(--navy-mid); border-bottom: 1px solid var(--border); padding: 40px 5%; }
+.facts-grid { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 1px; }
+.fact-item { padding: 1.5rem; text-align: center; border-right: 1px solid var(--border); }
+.fact-item:last-child { border-right: none; }
+.fact-num { font-family: var(--font-head); font-size: 1.8rem; font-weight: 900; color: var(--teal); margin-bottom: 4px; }
+.fact-label { font-size: 0.78rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.07em; }
+
+section { padding: 80px 5%; }
+.inner { max-width: 1100px; margin: 0 auto; }
+.section-label { font-size: 0.73rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--teal); margin-bottom: 0.7rem; }
+h2 { font-family: var(--font-head); font-size: clamp(1.6rem, 3vw, 2.4rem); font-weight: 800; color: var(--white); letter-spacing: -0.6px; line-height: 1.15; margin-bottom: 1rem; }
+.section-intro { color: var(--muted); font-size: 1.02rem; max-width: 620px; line-height: 1.72; }
+.divider { height: 1px; background: linear-gradient(90deg, transparent, rgba(0,200,176,0.35), transparent); }
+
+/* FORMAT */
+.format-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-top: 2rem; }
+.format-card { background: var(--card-bg); border: 1px solid var(--border); border-radius: 16px; padding: 2rem; transition: border-color 0.2s, transform 0.2s; }
+.format-card:hover { border-color: var(--accent-border); transform: translateY(-3px); }
+.format-icon { font-size: 2rem; margin-bottom: 1rem; display: block; }
+.format-card h3 { font-family: var(--font-head); font-weight: 800; color: var(--white); font-size: 1.1rem; margin-bottom: 0.5rem; }
+.format-card p { color: var(--muted); font-size: 0.88rem; line-height: 1.65; }
+
+/* CURRICULUM - big 8 modules */
+.modules-list { display: flex; flex-direction: column; gap: 1rem; margin-top: 2rem; }
+.big-module { background: var(--card-bg); border: 1px solid var(--border); border-radius: 16px; overflow: hidden; transition: border-color 0.3s; }
+.big-module:hover { border-color: var(--accent-border); }
+.big-module-header { display: flex; align-items: center; gap: 1.2rem; padding: 1.4rem 1.8rem; cursor: pointer; }
+.big-module-num { width: 42px; height: 42px; border-radius: 10px; background: var(--accent-dim); border: 1px solid var(--accent-border); display: flex; align-items: center; justify-content: center; font-family: var(--font-head); font-weight: 900; font-size: 0.85rem; color: var(--teal); flex-shrink: 0; }
+.big-module-title { flex: 1; }
+.big-module-title h3 { font-family: var(--font-head); font-weight: 800; color: var(--white); font-size: 1rem; margin-bottom: 2px; }
+.big-module-title span { font-size: 0.8rem; color: var(--muted); }
+.big-module-arrow { color: var(--teal); font-size: 1.2rem; transition: transform 0.3s; }
+.big-module.open .big-module-arrow { transform: rotate(90deg); }
+.big-module-body { border-top: 1px solid var(--border); padding: 1.5rem 1.8rem; display: none; }
+.big-module.open .big-module-body { display: grid; grid-template-columns: 1fr 1fr; gap: 0.5rem; }
+.module-topic { display: flex; align-items: flex-start; gap: 9px; font-size: 0.85rem; color: var(--muted); padding: 4px 0; }
+.module-topic::before { content: ''; width: 5px; height: 5px; background: var(--teal); border-radius: 50%; flex-shrink: 0; margin-top: 8px; opacity: 0.6; }
+
+/* COACHING */
+.coaching-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; margin-top: 2rem; }
+.coaching-info h3 { font-family: var(--font-head); font-weight: 800; color: var(--white); font-size: 1.2rem; margin-bottom: 0.8rem; }
+.coaching-info p { color: var(--muted); font-size: 0.95rem; line-height: 1.7; margin-bottom: 1rem; }
+.session-list { display: flex; flex-direction: column; gap: 0.8rem; }
+.session-item { display: flex; align-items: center; gap: 12px; background: var(--card-bg); border: 1px solid var(--border); border-radius: 10px; padding: 1rem 1.2rem; }
+.session-icon { font-size: 1.2rem; }
+.session-item strong { display: block; color: var(--white); font-size: 0.9rem; }
+.session-item span { color: var(--muted); font-size: 0.82rem; }
+.dro-card { background: linear-gradient(135deg, rgba(0,200,176,0.08), rgba(26,110,252,0.06)); border: 1px solid var(--accent-border); border-radius: 20px; padding: 2.5rem; text-align: center; }
+.dro-avatar { width: 100px; height: 100px; border-radius: 50%; border: 3px solid var(--accent-border); overflow: hidden; margin: 0 auto 1.2rem; background: var(--navy-light); display: flex; align-items: center; justify-content: center; }
+.dro-avatar img { width: 100%; height: 100%; object-fit: cover; object-position: top; }
+.dro-avatar .initials { font-family: var(--font-head); font-size: 1.8rem; font-weight: 900; color: var(--teal); }
+.dro-card h3 { font-family: var(--font-head); font-weight: 900; color: var(--white); font-size: 1.2rem; margin-bottom: 4px; }
+.dro-card .dro-title { color: var(--teal); font-size: 0.82rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 1rem; }
+.dro-card p { color: var(--muted); font-size: 0.88rem; line-height: 1.65; }
+
+/* OPTIONS */
+.options-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-top: 2rem; }
+.option-card { background: var(--card-bg); border: 1px solid var(--border); border-radius: 16px; padding: 2rem; }
+.option-tag { display: inline-block; font-size: 0.7rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; padding: 4px 12px; border-radius: 50px; margin-bottom: 1rem; }
+.tag-fast { background: rgba(0,200,176,0.12); border: 1px solid rgba(0,200,176,0.3); color: var(--teal); }
+.tag-flex { background: rgba(26,110,252,0.12); border: 1px solid rgba(26,110,252,0.3); color: #7fb3f5; }
+.option-card h3 { font-family: var(--font-head); font-weight: 800; color: var(--white); font-size: 1.1rem; margin-bottom: 0.6rem; }
+.option-card p { color: var(--muted); font-size: 0.88rem; line-height: 1.65; }
+.option-detail { margin-top: 1rem; padding-top: 1rem; border-top: 1px solid var(--border); display: flex; flex-direction: column; gap: 0.4rem; }
+.option-detail span { font-size: 0.84rem; color: var(--muted); display: flex; align-items: center; gap: 8px; }
+.option-detail span::before { content: '›'; color: var(--teal); font-weight: 700; }
+
+/* INCLUDES */
+.includes-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1rem; margin-top: 2rem; }
+.include-card { display: flex; align-items: flex-start; gap: 12px; padding: 1.2rem; background: rgba(0,200,176,0.05); border: 1px solid var(--accent-border); border-radius: 12px; }
+.include-check { width: 22px; height: 22px; border-radius: 50%; background: var(--accent-dim); border: 1px solid var(--accent-border); display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 2px; font-size: 0.65rem; color: var(--teal); }
+.include-card strong { display: block; color: var(--white); font-size: 0.9rem; font-weight: 600; margin-bottom: 2px; }
+.include-card span { color: var(--muted); font-size: 0.83rem; }
+
+/* GUARANTEE */
+.guarantee-box { display: flex; align-items: flex-start; gap: 1.5rem; background: rgba(0,200,176,0.05); border: 1px solid var(--accent-border); border-radius: 16px; padding: 2rem; margin-top: 2rem; }
+.guarantee-icon { font-size: 2.5rem; flex-shrink: 0; }
+.guarantee-box h3 { font-family: var(--font-head); font-weight: 800; color: var(--white); font-size: 1.1rem; margin-bottom: 0.5rem; }
+.guarantee-box p { color: var(--muted); font-size: 0.9rem; line-height: 1.7; }
+
+.cta-section { background: var(--navy-mid); border-top: 1px solid var(--border); padding: 80px 5%; text-align: center; }
+.cta-inner { max-width: 620px; margin: 0 auto; }
+.cta-inner h2 { margin-bottom: 1rem; }
+.cta-inner p { color: var(--muted); margin-bottom: 2rem; }
+.cta-actions { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+
+footer { background: var(--navy); border-top: 1px solid var(--border); padding: 2rem 5%; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; }
+.footer-brand { font-family: var(--font-head); font-weight: 900; color: var(--white); font-size: 0.95rem; }
+.footer-brand span { color: var(--teal); }
+.footer-copy { font-size: 0.78rem; color: var(--muted); }
+
+.fade-up { opacity: 0; transform: translateY(28px); transition: opacity 0.6s ease, transform 0.6s ease; }
+.fade-up.visible { opacity: 1; transform: none; }
+
+@media (max-width: 768px) {
+  .hero-inner { grid-template-columns: 1fr; }
+  .format-grid, .coaching-layout, .options-grid { grid-template-columns: 1fr; }
+  .big-module.open .big-module-body { grid-template-columns: 1fr; }
+  footer { flex-direction: column; text-align: center; }
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-logo">Virtual<span>InTechAp</span></a>
+  <a href="index.html#program" class="nav-back">Back to Programs</a>
+</nav>
+
+<!-- HERO -->
+<div class="page-hero">
+  <div class="hero-glow"></div>
+  <div class="hero-grid"></div>
+  <div class="hero-inner">
+    <div>
+      <div class="tier-badge">Professional Certificate · Most Popular</div>
+      <h1>TCAEES —<br><span>Applied Electronics<br>Engineering Skills</span></h1>
+      <p class="hero-desc">Our flagship program. Combine self-paced eLearning with 20 live group coaching sessions and real hands-on demonstrations led personally by Dr. Oscar Rodriguez. Earn an accredited certificate.</p>
+      <div class="hero-actions">
+        <a href="mailto:info@intechap.us?subject=TCAEES Professional Certificate Enrollment" class="btn-primary">Enroll Now →</a>
+        <a href="index.html#contact" class="btn-outline">Ask a Question</a>
+      </div>
+    </div>
+    <div class="price-card">
+      <div class="popular-tag">Most Popular</div>
+      <div class="was">Regular Price: $4,999</div>
+      <div class="amount">$2,999</div>
+      <div class="sub">One-time · Limited enrollment</div>
+      <a href="mailto:info@intechap.us?subject=TCAEES Professional Certificate Enrollment" class="enroll-btn">Enroll Today</a>
+    </div>
+  </div>
+</div>
+
+<!-- QUICK FACTS -->
+<div class="quick-facts">
+  <div class="facts-grid">
+    <div class="fact-item"><div class="fact-num">20</div><div class="fact-label">eLearning Lessons</div></div>
+    <div class="fact-item"><div class="fact-num">20</div><div class="fact-label">Live Coaching Sessions</div></div>
+    <div class="fact-item"><div class="fact-num">8</div><div class="fact-label">Hands-On Modules</div></div>
+    <div class="fact-item"><div class="fact-num">6</div><div class="fact-label">Months to Complete</div></div>
+    <div class="fact-item"><div class="fact-num">1</div><div class="fact-label">Accredited Certificate</div></div>
+    <div class="fact-item"><div class="fact-num">$4K+</div><div class="fact-label">Total Value</div></div>
+  </div>
+</div>
+
+<!-- PROGRAM FORMAT -->
+<section>
+  <div class="inner">
+    <div class="section-label">Program Format</div>
+    <h2>Two-Track Learning: Online + Live</h2>
+    <p class="section-intro">TCAEES is not just a video course. It combines structured eLearning with live interaction and real hands-on demonstrations — giving you both theoretical knowledge and practical skills.</p>
+    <div class="format-grid fade-up">
+      <div class="format-card">
+        <span class="format-icon">🖥️</span>
+        <h3>20 eLearning Course Lessons</h3>
+        <p>Structured, on-demand video lessons that you complete at your own pace through your personal portal. Each lesson builds on the last, guiding you from fundamentals to applied engineering skills. Worth $2,000 in standalone value.</p>
+      </div>
+      <div class="format-card">
+        <span class="format-icon">🎙️</span>
+        <h3>20 Live Group Coaching Sessions with DrO</h3>
+        <p>4 weeks of live group sessions led personally by Dr. Rodriguez. Ask questions in real-time, see hands-on demonstrations, and learn alongside peers from around the world. Worth $2,000 in standalone value.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- CURRICULUM -->
+<section style="background: var(--navy-mid);">
+  <div class="inner">
+    <div class="section-label">Curriculum Breakdown</div>
+    <h2>8 Core Hands-On Modules</h2>
+    <p class="section-intro">Every module combines theory with applied practice. Click any module to see the full topic breakdown.</p>
+    <div class="modules-list fade-up">
+
+      <div class="big-module open">
+        <div class="big-module-header" onclick="toggle(this)">
+          <div class="big-module-num">01</div>
+          <div class="big-module-title"><h3>Multimeter Use &amp; Measurements</h3><span>Foundation of all electrical troubleshooting</span></div>
+          <div class="big-module-arrow">›</div>
+        </div>
+        <div class="big-module-body">
+          <div class="module-topic">Multimeter anatomy and controls</div>
+          <div class="module-topic">DC voltage measurement techniques</div>
+          <div class="module-topic">AC voltage measurement techniques</div>
+          <div class="module-topic">Current measurement (series insertion)</div>
+          <div class="module-topic">Resistance measurement and Ohmmeter use</div>
+          <div class="module-topic">Continuity and diode testing</div>
+          <div class="module-topic">Interpreting readings and common errors</div>
+          <div class="module-topic">Safety procedures when measuring live circuits</div>
+        </div>
+      </div>
+
+      <div class="big-module">
+        <div class="big-module-header" onclick="toggle(this)">
+          <div class="big-module-num">02</div>
+          <div class="big-module-title"><h3>DC &amp; AC Circuit Design &amp; Troubleshooting</h3><span>Core circuit analysis and fault isolation</span></div>
+          <div class="big-module-arrow">›</div>
+        </div>
+        <div class="big-module-body">
+          <div class="module-topic">Series and parallel DC circuit analysis</div>
+          <div class="module-topic">Kirchhoff's Voltage Law (KVL)</div>
+          <div class="module-topic">Kirchhoff's Current Law (KCL)</div>
+          <div class="module-topic">AC waveform characteristics</div>
+          <div class="module-topic">Capacitive and inductive reactance</div>
+          <div class="module-topic">Circuit fault isolation methodologies</div>
+          <div class="module-topic">Open, short, and high-resistance faults</div>
+          <div class="module-topic">Half-split troubleshooting technique</div>
+        </div>
+      </div>
+
+      <div class="big-module">
+        <div class="big-module-header" onclick="toggle(this)">
+          <div class="big-module-num">03</div>
+          <div class="big-module-title"><h3>Oscilloscope Use &amp; Measurements</h3><span>Visualizing signals in real time</span></div>
+          <div class="big-module-arrow">›</div>
+        </div>
+        <div class="big-module-body">
+          <div class="module-topic">Oscilloscope controls and setup</div>
+          <div class="module-topic">Time/div and Volts/div settings</div>
+          <div class="module-topic">Triggering: edge, slope, and level</div>
+          <div class="module-topic">Measuring amplitude and frequency</div>
+          <div class="module-topic">Phase angle measurement between signals</div>
+          <div class="module-topic">Analyzing signal distortion and noise</div>
+          <div class="module-topic">Probing techniques and ground referencing</div>
+          <div class="module-topic">Saving and interpreting waveform captures</div>
+        </div>
+      </div>
+
+      <div class="big-module">
+        <div class="big-module-header" onclick="toggle(this)">
+          <div class="big-module-num">04</div>
+          <div class="big-module-title"><h3>Function Generator Use &amp; Measurements</h3><span>Generating and controlling test signals</span></div>
+          <div class="big-module-arrow">›</div>
+        </div>
+        <div class="big-module-body">
+          <div class="module-topic">Function generator overview and controls</div>
+          <div class="module-topic">Sine, square, and triangle waveform generation</div>
+          <div class="module-topic">Frequency, amplitude, and offset adjustment</div>
+          <div class="module-topic">Connecting generator to oscilloscope</div>
+          <div class="module-topic">Impedance matching and output loading</div>
+          <div class="module-topic">Using sweep and modulation modes</div>
+          <div class="module-topic">Signal injection for troubleshooting</div>
+          <div class="module-topic">Practical lab exercises with test equipment</div>
+        </div>
+      </div>
+
+      <div class="big-module">
+        <div class="big-module-header" onclick="toggle(this)">
+          <div class="big-module-num">05</div>
+          <div class="big-module-title"><h3>Digital Circuits Design &amp; Troubleshooting</h3><span>Logic, gates, and digital systems</span></div>
+          <div class="big-module-arrow">›</div>
+        </div>
+        <div class="big-module-body">
+          <div class="module-topic">Binary and hexadecimal number systems</div>
+          <div class="module-topic">Boolean algebra and logic simplification</div>
+          <div class="module-topic">TTL and CMOS logic families</div>
+          <div class="module-topic">AND, OR, NOT, NAND, NOR, XOR gate analysis</div>
+          <div class="module-topic">Combinational logic circuit design</div>
+          <div class="module-topic">Flip-flops and sequential logic</div>
+          <div class="module-topic">Multiplexers and demultiplexers</div>
+          <div class="module-topic">Digital circuit troubleshooting with logic probes</div>
+        </div>
+      </div>
+
+      <div class="big-module">
+        <div class="big-module-header" onclick="toggle(this)">
+          <div class="big-module-num">06</div>
+          <div class="big-module-title"><h3>Electrical Wires &amp; Harnesses</h3><span>Wiring skills for industry-standard assembly</span></div>
+          <div class="big-module-arrow">›</div>
+        </div>
+        <div class="big-module-body">
+          <div class="module-topic">Wire gauges, types, and insulation standards</div>
+          <div class="module-topic">Wire color coding conventions</div>
+          <div class="module-topic">Crimping, soldering, and termination techniques</div>
+          <div class="module-topic">Connector types: JST, Molex, D-sub, and more</div>
+          <div class="module-topic">Harness routing and strain relief</div>
+          <div class="module-topic">Cable management and tie-down techniques</div>
+          <div class="module-topic">IPC/WHMA standards overview</div>
+          <div class="module-topic">Wiring harness inspection and testing</div>
+        </div>
+      </div>
+
+      <div class="big-module">
+        <div class="big-module-header" onclick="toggle(this)">
+          <div class="big-module-num">07</div>
+          <div class="big-module-title"><h3>Circuit Prototyping &amp; Breadboarding</h3><span>Building and testing real circuits</span></div>
+          <div class="big-module-arrow">›</div>
+        </div>
+        <div class="big-module-body">
+          <div class="module-topic">Breadboard anatomy and power rails</div>
+          <div class="module-topic">Reading schematics and translating to breadboard</div>
+          <div class="module-topic">Component insertion and wire routing best practices</div>
+          <div class="module-topic">Power supply connections and protection</div>
+          <div class="module-topic">Building and testing a DC circuit</div>
+          <div class="module-topic">Building and testing an AC circuit</div>
+          <div class="module-topic">Building a digital logic circuit</div>
+          <div class="module-topic">Debugging common breadboard issues</div>
+        </div>
+      </div>
+
+      <div class="big-module">
+        <div class="big-module-header" onclick="toggle(this)">
+          <div class="big-module-num">08</div>
+          <div class="big-module-title"><h3>Hands-On Applied Electronics Capstone Project</h3><span>Demonstrate your full skillset</span></div>
+          <div class="big-module-arrow">›</div>
+        </div>
+        <div class="big-module-body">
+          <div class="module-topic">Project scope definition and planning</div>
+          <div class="module-topic">Schematic design for assigned project</div>
+          <div class="module-topic">Component selection and procurement</div>
+          <div class="module-topic">Circuit build on breadboard or PCB</div>
+          <div class="module-topic">Testing and verification with instruments</div>
+          <div class="module-topic">Fault identification and correction</div>
+          <div class="module-topic">Documentation and technical write-up</div>
+          <div class="module-topic">Project review with Dr. Rodriguez</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- LIVE COACHING -->
+<section>
+  <div class="inner">
+    <div class="section-label">Live Coaching</div>
+    <h2>20 Sessions with Dr. O — In Person with the Expert</h2>
+    <div class="coaching-layout fade-up">
+      <div class="coaching-info">
+        <h3>What Happens in Each Live Session</h3>
+        <p>Each session is a live group meeting where DrO walks through the week's concepts, performs hands-on demonstrations, answers questions in real-time, and gives you direct feedback on your progress.</p>
+        <div class="session-list">
+          <div class="session-item"><span class="session-icon">📹</span><div><strong>Live Demo by Dr. O</strong><span>Watch real hands-on circuit work performed and explained live</span></div></div>
+          <div class="session-item"><span class="session-icon">❓</span><div><strong>Open Q&amp;A</strong><span>Ask questions and get answers directly from the instructor</span></div></div>
+          <div class="session-item"><span class="session-icon">👥</span><div><strong>Group Interaction</strong><span>Learn alongside peers working through the same material</span></div></div>
+          <div class="session-item"><span class="session-icon">📋</span><div><strong>Progress Check-In</strong><span>Review your eLearning progress and address any gaps</span></div></div>
+        </div>
+      </div>
+      <div class="dro-card">
+        <div class="dro-avatar">
+          <img src="dr-rodriguez.webp" alt="Dr. Oscar Rodriguez" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+          <div class="initials" style="display:none">OR</div>
+        </div>
+        <h3>Oscar "Dr. O" Rodriguez</h3>
+        <div class="dro-title">Your Personal Instructor</div>
+        <p>20+ years of combined industry, academic, and nonprofit experience in automation, mechatronics, electronics, robotics, advanced manufacturing, and renewable energy.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- COMPLETION OPTIONS -->
+<section style="background:var(--navy-mid);">
+  <div class="inner">
+    <div class="section-label">Completion Options</div>
+    <h2>Two Ways to Complete the Program</h2>
+    <div class="options-grid fade-up">
+      <div class="option-card">
+        <div class="option-tag tag-fast">Intensive Track</div>
+        <h3>Complete in 20 Days (1 Month)</h3>
+        <p>For motivated learners who want to finish fast. Complete all 20 eLearning lessons and attend all 20 coaching sessions within a single 4-week cohort.</p>
+        <div class="option-detail">
+          <span>1 live coaching session per day, 5 days/week</span>
+          <span>1 eLearning module completed per day</span>
+          <span>Certificate issued within 1 week of completion</span>
+          <span>Best for those with dedicated learning time</span>
+        </div>
+      </div>
+      <div class="option-card">
+        <div class="option-tag tag-flex">Extended Track</div>
+        <h3>Complete in Up to 6 Months</h3>
+        <p>For working professionals who need flexibility. Complete the eLearning on your own schedule and attend coaching sessions at a pace that fits your life.</p>
+        <div class="option-detail">
+          <span>Attend coaching sessions across multiple cohorts</span>
+          <span>Complete eLearning lessons at any time</span>
+          <span>Up to 6 months from enrollment date</span>
+          <span>Best for those balancing work and learning</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- WHAT'S INCLUDED -->
+<section>
+  <div class="inner">
+    <div class="section-label">Everything Included</div>
+    <h2>Your Complete TCAEES Package</h2>
+    <div class="includes-grid fade-up">
+      <div class="include-card"><div class="include-check">✓</div><div><strong>20 eLearning Course Lessons</strong><span>Self-paced video instruction covering all 8 curriculum modules — $2,000 value</span></div></div>
+      <div class="include-card"><div class="include-check">✓</div><div><strong>20 Live Group Coaching Sessions</strong><span>4 weeks of real-time instruction with Dr. Rodriguez — $2,000 value</span></div></div>
+      <div class="include-card"><div class="include-check">✓</div><div><strong>Hands-On Demonstrations</strong><span>Watch Dr. O perform every lab exercise live, with full explanation</span></div></div>
+      <div class="include-card"><div class="include-check">✓</div><div><strong>Personal eLearning Portal</strong><span>Your own account to access all course materials anytime</span></div></div>
+      <div class="include-card"><div class="include-check">✓</div><div><strong>Accredited Certificate</strong><span>InTechAp-issued certificate upon program completion</span></div></div>
+      <div class="include-card"><div class="include-check">✓</div><div><strong>6 Months to Complete</strong><span>Finish in 20 days or take up to 6 months — your choice</span></div></div>
+    </div>
+
+    <div class="guarantee-box fade-up">
+      <div class="guarantee-icon">🛡️</div>
+      <div>
+        <h3>Satisfaction Guarantee</h3>
+        <p>We stand behind our program. After Week 1 you will receive a 66% reimbursement. After Week 2 you will receive a 33% reimbursement. No refund is issued after Week 3 due to the accelerated and hands-on nature of the coaching sessions. Please allow 24 hours for your eLearning account to be created after enrollment.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<div class="cta-section">
+  <div class="cta-inner">
+    <div class="section-label" style="text-align:center">Ready to Enroll?</div>
+    <h2>Get Your TCAEES Certificate for $2,999</h2>
+    <p>Join the first 100 students and lock in this discounted rate. After the initial cohort, the price returns to $4,999. Don't miss your window.</p>
+    <div class="cta-actions">
+      <a href="mailto:info@intechap.us?subject=TCAEES Professional Certificate Enrollment" class="btn-primary">Enroll Now — $2,999 →</a>
+      <a href="index.html#contact" class="btn-outline">Ask Dr. O a Question</a>
+    </div>
+    <p style="color:var(--muted);font-size:0.82rem;margin-top:1.5rem">Questions? Email <a href="mailto:info@intechap.us" style="color:var(--teal)">info@intechap.us</a> or call <a href="tel:+13176413282" style="color:var(--teal)">+1 (317) 641-3282</a></p>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-brand">Virtual<span>InTechAp</span></div>
+  <div class="footer-copy">© 1998–2025 Virtual InTechAp · All rights reserved · Arizona, USA</div>
+</footer>
+
+<script>
+function toggle(header) {
+  const mod = header.closest('.big-module');
+  mod.classList.toggle('open');
+}
+const obs = new IntersectionObserver(entries => { entries.forEach(e => { if(e.isIntersecting){e.target.classList.add('visible');obs.unobserve(e.target);}}); }, {threshold:0.1,rootMargin:'0px 0px -40px 0px'});
+document.querySelectorAll('.fade-up').forEach(el => obs.observe(el));
+</script>
+</body>
+</html>
