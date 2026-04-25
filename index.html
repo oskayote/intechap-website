@@ -1,0 +1,617 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Virtual InTechAp — Institute of Technology Applications</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Exo+2:wght@300;400;600;700;800;900&family=Source+Sans+3:wght@300;400;600&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --navy:       #040c1b;
+  --navy-mid:   #081628;
+  --navy-light: #0d2040;
+  --blue:       #1a6efc;
+  --teal:       #00c8b0;
+  --gold:       #f5a623;
+  --white:      #ffffff;
+  --off-white:  #dde8f5;
+  --muted:      #7f9abc;
+  --border:     rgba(255,255,255,0.07);
+  --card-bg:    rgba(255,255,255,0.04);
+  --font-head:  'Exo 2', sans-serif;
+  --font-body:  'Source Sans 3', sans-serif;
+}
+
+html { scroll-behavior: smooth; }
+body { background: var(--navy); color: var(--off-white); font-family: var(--font-body); font-size: 17px; line-height: 1.7; overflow-x: hidden; }
+
+/* NAV */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 200;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 5%; height: 68px;
+  background: rgba(4,12,27,0.88); backdrop-filter: blur(18px);
+  border-bottom: 1px solid var(--border); transition: background 0.3s;
+}
+nav.scrolled { background: rgba(4,12,27,0.98); }
+.nav-logo { font-family: var(--font-head); font-weight: 900; font-size: 1.15rem; color: var(--white); text-decoration: none; }
+.nav-logo span { color: var(--teal); }
+.nav-links { display: flex; gap: 2rem; list-style: none; }
+.nav-links a { color: var(--muted); text-decoration: none; font-size: 0.82rem; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; transition: color 0.2s; }
+.nav-links a:hover { color: var(--teal); }
+.nav-cta { background: var(--teal) !important; color: var(--navy) !important; padding: 7px 18px; border-radius: 6px; transition: box-shadow 0.2s, transform 0.2s !important; }
+.nav-cta:hover { box-shadow: 0 0 20px rgba(0,200,176,0.4); transform: translateY(-1px); }
+.nav-toggle { display: none; background: none; border: none; cursor: pointer; padding: 4px; }
+.nav-toggle span { display: block; width: 24px; height: 2px; background: var(--off-white); margin: 5px 0; border-radius: 2px; }
+
+/* HERO */
+#hero { min-height: 100vh; display: grid; place-items: center; padding: 120px 5% 80px; position: relative; overflow: hidden; }
+.hero-bg-img {
+  position: absolute; inset: 0;
+  background: url('https://images.unsplash.com/photo-1518770660439-4636190af475?w=1600&q=80') center/cover no-repeat;
+  opacity: 0.09; animation: slowzoom 20s ease-in-out infinite alternate;
+}
+@keyframes slowzoom { from { transform: scale(1.05); } to { transform: scale(1.13); } }
+.hero-overlay {
+  position: absolute; inset: 0;
+  background: radial-gradient(ellipse 90% 80% at 50% 0%, rgba(26,110,252,0.16) 0%, transparent 70%),
+              linear-gradient(to bottom, transparent 40%, var(--navy) 100%);
+}
+.hero-grid-bg {
+  position: absolute; inset: 0;
+  background-image: linear-gradient(rgba(0,200,176,0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(0,200,176,0.05) 1px, transparent 1px);
+  background-size: 56px 56px;
+  mask-image: radial-gradient(ellipse 85% 75% at 50% 35%, black 20%, transparent 100%);
+}
+.hero-content { position: relative; text-align: center; max-width: 850px; }
+.hero-eyebrow {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: rgba(0,200,176,0.09); border: 1px solid rgba(0,200,176,0.22);
+  color: var(--teal); font-size: 0.75rem; font-weight: 600;
+  letter-spacing: 0.12em; text-transform: uppercase; padding: 6px 18px; border-radius: 50px; margin-bottom: 2rem;
+  animation: fadedown 0.7s ease both;
+}
+.hero-eyebrow::before { content: ''; width: 6px; height: 6px; background: var(--teal); border-radius: 50%; animation: pulse 2s infinite; }
+@keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:0.4;transform:scale(0.6)} }
+@keyframes fadedown { from{opacity:0;transform:translateY(-10px)} to{opacity:1;transform:none} }
+h1 { font-family: var(--font-head); font-size: clamp(2.5rem, 6vw, 4.4rem); font-weight: 900; line-height: 1.06; letter-spacing: -2px; color: var(--white); margin-bottom: 1.5rem; animation: fadein 0.8s 0.15s ease both; }
+h1 em { font-style: normal; color: var(--teal); }
+.hero-sub { font-size: 1.15rem; color: var(--muted); max-width: 560px; margin: 0 auto 2.5rem; line-height: 1.65; font-weight: 300; animation: fadein 0.8s 0.3s ease both; }
+@keyframes fadein { from{opacity:0;transform:translateY(20px)} to{opacity:1;transform:none} }
+.hero-actions { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; animation: fadein 0.8s 0.45s ease both; }
+.btn-primary {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: var(--teal); color: var(--navy);
+  font-family: var(--font-head); font-weight: 700; font-size: 0.92rem;
+  text-decoration: none; padding: 14px 30px; border-radius: 8px; border: none; cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s; position: relative; overflow: hidden;
+}
+.btn-primary::after { content:''; position:absolute; inset:0; background:linear-gradient(90deg,transparent,rgba(255,255,255,0.18),transparent); transform:translateX(-100%); transition:transform 0.5s; }
+.btn-primary:hover { transform: translateY(-2px); box-shadow: 0 14px 36px rgba(0,200,176,0.35); }
+.btn-primary:hover::after { transform: translateX(100%); }
+.btn-secondary { display: inline-block; background: transparent; color: var(--off-white); font-family: var(--font-head); font-weight: 600; font-size: 0.92rem; text-decoration: none; padding: 13px 30px; border-radius: 8px; border: 1px solid rgba(255,255,255,0.18); transition: border-color 0.2s, background 0.2s; }
+.btn-secondary:hover { border-color: var(--teal); background: rgba(0,200,176,0.07); }
+.hero-stats { display: flex; gap: 2.5rem; justify-content: center; margin-top: 4rem; padding-top: 3rem; border-top: 1px solid var(--border); flex-wrap: wrap; animation: fadein 0.8s 0.6s ease both; }
+.stat-item { text-align: center; }
+.stat-num { font-family: var(--font-head); font-size: 2rem; font-weight: 900; color: var(--white); }
+.stat-num span { color: var(--teal); }
+.stat-label { font-size: 0.78rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.08em; margin-top: 2px; }
+
+/* SECTIONS */
+section { padding: 100px 5%; }
+.inner { max-width: 1200px; margin: 0 auto; }
+.section-label { font-size: 0.73rem; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--teal); margin-bottom: 0.8rem; }
+h2 { font-family: var(--font-head); font-size: clamp(1.8rem, 3.5vw, 2.8rem); font-weight: 800; color: var(--white); letter-spacing: -0.8px; line-height: 1.13; margin-bottom: 1rem; }
+.section-intro { color: var(--muted); font-size: 1.04rem; max-width: 600px; line-height: 1.72; }
+.divider { height: 1px; background: linear-gradient(90deg, transparent, rgba(0,200,176,0.35), transparent); }
+
+/* STRIP */
+#strip { background: var(--navy-mid); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); padding: 48px 5%; }
+.strip-grid { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(200px,1fr)); gap: 1px; }
+.strip-item { padding: 2rem 1.5rem; text-align: center; border-right: 1px solid var(--border); transition: background 0.3s; }
+.strip-item:last-child { border-right: none; }
+.strip-item:hover { background: rgba(255,255,255,0.03); }
+.strip-icon { font-size: 1.8rem; margin-bottom: 0.75rem; display: block; transition: transform 0.3s; }
+.strip-item:hover .strip-icon { transform: scale(1.15) translateY(-3px); }
+.strip-item strong { display: block; font-family: var(--font-head); font-weight: 700; color: var(--white); font-size: 0.95rem; margin-bottom: 4px; }
+.strip-item span { font-size: 0.82rem; color: var(--muted); }
+
+/* MISSION */
+#mission { background: var(--navy-mid); border-bottom: 1px solid var(--border); }
+.mission-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; margin-top: 3rem; border-radius: 16px; overflow: hidden; border: 1px solid var(--border); }
+.mission-card { background: var(--card-bg); padding: 2.8rem; position: relative; overflow: hidden; transition: background 0.3s; }
+.mission-card:hover { background: rgba(255,255,255,0.065); }
+.mission-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; }
+.mission-card:first-child::before { background: linear-gradient(90deg, var(--teal), var(--blue)); }
+.mission-card:last-child::before  { background: linear-gradient(90deg, var(--blue), var(--gold)); }
+.mission-icon { width: 50px; height: 50px; border-radius: 14px; display: flex; align-items: center; justify-content: center; margin-bottom: 1.2rem; font-size: 1.4rem; transition: transform 0.3s; }
+.mission-card:hover .mission-icon { transform: scale(1.1); }
+.icon-teal { background: rgba(0,200,176,0.12); }
+.icon-blue { background: rgba(26,110,252,0.12); }
+.mission-card h3 { font-family: var(--font-head); font-size: 1.2rem; font-weight: 700; color: var(--white); margin-bottom: 0.8rem; }
+.mission-card p { color: var(--muted); font-size: 0.97rem; }
+
+/* WHO WE ARE */
+#who { padding: 100px 5%; }
+.who-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center; margin-bottom: 5rem; }
+.who-photo-stack { position: relative; height: 400px; }
+.photo-card { position: absolute; border-radius: 16px; overflow: hidden; border: 1px solid var(--border); box-shadow: 0 24px 60px rgba(0,0,0,0.5); transition: transform 0.4s; }
+.photo-card img { width: 100%; height: 100%; object-fit: cover; display: block; filter: brightness(0.82); transition: transform 0.5s; }
+.photo-card:hover img { transform: scale(1.04); }
+.photo-card:first-child  { width: 65%; height: 258px; top: 0; left: 0; z-index: 2; }
+.photo-card:nth-child(2) { width: 58%; height: 218px; bottom: 0; right: 0; z-index: 3; }
+.photo-accent { position: absolute; bottom: 65px; left: 44%; background: rgba(8,22,40,0.85); border: 1px solid rgba(0,200,176,0.28); border-radius: 12px; padding: 12px 16px; z-index: 4; backdrop-filter: blur(12px); }
+.photo-accent strong { display: block; font-family: var(--font-head); font-weight: 800; color: var(--teal); font-size: 1.25rem; }
+.photo-accent span { font-size: 0.75rem; color: var(--muted); }
+.who-photo-stack:hover .photo-card:first-child  { transform: translate(-6px,-4px) rotate(-1deg); }
+.who-photo-stack:hover .photo-card:nth-child(2) { transform: translate(4px, 4px) rotate(0.8deg); }
+
+.delivery-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px,1fr)); gap: 1rem; }
+.delivery-card { background: var(--card-bg); border: 1px solid var(--border); border-radius: 12px; padding: 1.5rem; display: flex; gap: 1rem; align-items: flex-start; transition: border-color 0.25s, background 0.25s, transform 0.25s; }
+.delivery-card:hover { border-color: rgba(0,200,176,0.3); background: rgba(0,200,176,0.04); transform: translateY(-3px); }
+.delivery-num { font-family: var(--font-head); font-size: 1.6rem; font-weight: 900; color: var(--teal); opacity: 0.35; line-height: 1; min-width: 28px; }
+.delivery-text strong { display: block; font-family: var(--font-head); font-weight: 600; color: var(--white); font-size: 0.92rem; margin-bottom: 4px; }
+.delivery-text span { color: var(--muted); font-size: 0.84rem; }
+
+/* PROGRAMS */
+#program { background: var(--navy-mid); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+.programs-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; margin-top: 3rem; }
+.prog-card { background: rgba(255,255,255,0.04); border: 1px solid var(--border); border-radius: 20px; overflow: hidden; display: flex; flex-direction: column; transition: transform 0.3s, box-shadow 0.3s, border-color 0.3s; position: relative; }
+.prog-card:hover { transform: translateY(-8px); box-shadow: 0 30px 70px rgba(0,0,0,0.45); }
+.prog-card.featured { border-color: rgba(0,200,176,0.4); box-shadow: 0 0 0 1px rgba(0,200,176,0.1); }
+.prog-card.featured:hover { box-shadow: 0 30px 70px rgba(0,0,0,0.5), 0 0 0 1px rgba(0,200,176,0.4); }
+.prog-badge { position: absolute; top: 1rem; right: 1rem; z-index: 5; background: var(--teal); color: var(--navy); font-size: 0.7rem; font-weight: 800; letter-spacing: 0.08em; text-transform: uppercase; padding: 4px 12px; border-radius: 50px; }
+.prog-photo { height: 170px; overflow: hidden; position: relative; }
+.prog-photo img { width: 100%; height: 100%; object-fit: cover; filter: brightness(0.7); transition: transform 0.5s; }
+.prog-card:hover .prog-photo img { transform: scale(1.06); }
+.prog-photo-overlay { position: absolute; inset: 0; background: linear-gradient(to bottom, transparent 40%, rgba(4,12,27,0.9) 100%); }
+.prog-body { padding: 1.8rem; display: flex; flex-direction: column; flex: 1; }
+.prog-tier { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 0.5rem; }
+.tier-foundation  { color: #7fb3f5; }
+.tier-professional{ color: var(--teal); }
+.tier-enterprise  { color: var(--gold); }
+.prog-body h3 { font-family: var(--font-head); font-size: 1.22rem; font-weight: 800; color: var(--white); margin-bottom: 0.6rem; line-height: 1.2; }
+.prog-body p { color: var(--muted); font-size: 0.87rem; line-height: 1.6; margin-bottom: 1.2rem; }
+.prog-price-row { display: flex; align-items: baseline; gap: 8px; margin-bottom: 1.4rem; }
+.prog-price { font-family: var(--font-head); font-size: 2rem; font-weight: 900; color: var(--white); }
+.prog-price-note { font-size: 0.8rem; color: var(--muted); }
+.prog-price-was  { font-size: 0.82rem; color: var(--muted); text-decoration: line-through; }
+.prog-features { list-style: none; display: flex; flex-direction: column; gap: 0.55rem; margin-bottom: 1.8rem; flex: 1; }
+.prog-features li { display: flex; align-items: flex-start; gap: 9px; font-size: 0.85rem; color: var(--off-white); opacity: 0.85; }
+.prog-features li::before { content: ''; width: 17px; height: 17px; flex-shrink: 0; margin-top: 3px; border-radius: 50%; background-repeat: no-repeat; background-position: center; background-size: 10px; }
+.ck-blue::before { background: rgba(26,110,252,0.15); border: 1px solid rgba(26,110,252,0.3); background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 10'%3E%3Cpath d='M1.5 5l2.5 2.5 4.5-4.5' stroke='%237fb3f5' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: center; background-size: 10px; }
+.ck-teal::before { background: rgba(0,200,176,0.12); border: 1px solid rgba(0,200,176,0.3); background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 10'%3E%3Cpath d='M1.5 5l2.5 2.5 4.5-4.5' stroke='%2300c8b0' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: center; background-size: 10px; }
+.ck-gold::before  { background: rgba(245,166,35,0.12);  border: 1px solid rgba(245,166,35,0.3);  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 10'%3E%3Cpath d='M1.5 5l2.5 2.5 4.5-4.5' stroke='%23f5a623' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: center; background-size: 10px; }
+.prog-cta { display: block; text-align: center; text-decoration: none; border-radius: 9px; padding: 12px; font-family: var(--font-head); font-weight: 700; font-size: 0.88rem; letter-spacing: 0.03em; transition: transform 0.2s, box-shadow 0.2s; }
+.prog-cta:hover { transform: translateY(-2px); }
+.cta-blue { background: rgba(26,110,252,0.14); border: 1px solid rgba(26,110,252,0.3); color: #7fb3f5; }
+.cta-blue:hover { box-shadow: 0 8px 24px rgba(26,110,252,0.2); }
+.cta-teal { background: var(--teal); border: 1px solid var(--teal); color: var(--navy); }
+.cta-teal:hover { box-shadow: 0 8px 24px rgba(0,200,176,0.35); }
+.cta-gold { background: rgba(245,166,35,0.12); border: 1px solid rgba(245,166,35,0.3); color: var(--gold); }
+.cta-gold:hover { box-shadow: 0 8px 24px rgba(245,166,35,0.2); }
+.money-back { display: flex; align-items: flex-start; gap: 10px; margin-top: 2rem; padding: 1rem 1.4rem; background: rgba(0,200,176,0.05); border: 1px solid rgba(0,200,176,0.15); border-radius: 10px; font-size: 0.85rem; color: var(--muted); }
+.money-back span:first-child { font-size: 1.3rem; flex-shrink: 0; }
+.money-back strong { color: var(--off-white); }
+
+/* FOUNDER */
+#founder { padding: 100px 5%; }
+.founder-card { display: grid; grid-template-columns: auto 1fr; gap: 3.5rem; align-items: center; background: var(--card-bg); border: 1px solid var(--border); border-radius: 24px; padding: 3.5rem; margin-top: 3rem; position: relative; overflow: hidden; transition: border-color 0.3s; }
+.founder-card:hover { border-color: rgba(0,200,176,0.2); }
+.founder-card::after { content: '"'; position: absolute; top: -30px; right: 50px; font-size: 16rem; font-family: Georgia, serif; color: rgba(0,200,176,0.04); line-height: 1; pointer-events: none; }
+.founder-glow { position: absolute; width: 300px; height: 300px; background: radial-gradient(circle, rgba(0,200,176,0.07) 0%, transparent 70%); top: -50px; left: -50px; pointer-events: none; }
+.founder-avatar { width: 150px; height: 150px; border-radius: 50%; border: 3px solid rgba(0,200,176,0.3); overflow: hidden; flex-shrink: 0; position: relative; z-index: 1; transition: border-color 0.3s; }
+.founder-card:hover .founder-avatar { border-color: rgba(0,200,176,0.6); }
+.founder-avatar img { width: 100%; height: 100%; object-fit: cover; object-position: top; }
+.founder-initials { width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; font-family: var(--font-head); font-size: 2.8rem; font-weight: 900; color: var(--teal); background: var(--navy-light); }
+.founder-info { position: relative; z-index: 1; }
+.founder-info h3 { font-family: var(--font-head); font-size: 1.7rem; font-weight: 900; color: var(--white); margin-bottom: 4px; }
+.founder-title { color: var(--teal); font-size: 0.84rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.09em; margin-bottom: 1.2rem; }
+.founder-bio { color: var(--muted); font-size: 0.97rem; margin-bottom: 1.5rem; line-height: 1.7; }
+.expertise-tags { display: flex; flex-wrap: wrap; gap: 8px; }
+.tag { background: rgba(26,110,252,0.1); border: 1px solid rgba(26,110,252,0.22); color: #7fb3f5; font-size: 0.78rem; padding: 4px 13px; border-radius: 50px; font-weight: 600; transition: background 0.2s, border-color 0.2s; cursor: default; }
+.tag:hover { background: rgba(26,110,252,0.18); border-color: rgba(26,110,252,0.4); }
+
+/* CONTACT */
+#contact { background: var(--navy-mid); border-top: 1px solid var(--border); }
+.contact-inner { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 4.5rem; align-items: start; }
+.contact-methods { display: flex; flex-direction: column; gap: 1rem; margin-top: 2rem; }
+.contact-method { display: flex; align-items: center; gap: 1rem; background: var(--card-bg); border: 1px solid var(--border); border-radius: 12px; padding: 1.2rem 1.4rem; text-decoration: none; transition: border-color 0.2s, transform 0.2s; }
+.contact-method:hover { border-color: rgba(0,200,176,0.3); transform: translateX(4px); }
+.contact-method-icon { width: 42px; height: 42px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 1.15rem; flex-shrink: 0; }
+.contact-method-text strong { display: block; color: var(--white); font-size: 0.88rem; font-weight: 600; margin-bottom: 2px; }
+.contact-method-text span { color: var(--muted); font-size: 0.84rem; }
+.contact-form { display: flex; flex-direction: column; gap: 1rem; }
+.contact-form h3 { font-family: var(--font-head); font-size: 1.45rem; font-weight: 800; color: var(--white); margin-bottom: 0.4rem; }
+.form-group { display: flex; flex-direction: column; gap: 6px; }
+.form-group label { font-size: 0.78rem; font-weight: 600; color: var(--muted); text-transform: uppercase; letter-spacing: 0.07em; }
+.form-group input, .form-group textarea, .form-group select { background: rgba(255,255,255,0.05); border: 1px solid var(--border); border-radius: 9px; padding: 12px 16px; color: var(--off-white); font-family: var(--font-body); font-size: 0.95rem; outline: none; transition: border-color 0.2s, background 0.2s; width: 100%; }
+.form-group input:focus, .form-group textarea:focus, .form-group select:focus { border-color: var(--teal); background: rgba(0,200,176,0.04); }
+.form-group textarea { resize: vertical; min-height: 100px; }
+.form-group select option { background: var(--navy-mid); }
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+
+/* FOOTER */
+footer { background: var(--navy); border-top: 1px solid var(--border); padding: 2.5rem 5%; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; }
+.footer-brand { font-family: var(--font-head); font-weight: 900; color: var(--white); font-size: 1rem; }
+.footer-brand span { color: var(--teal); }
+.footer-copy { font-size: 0.78rem; color: var(--muted); }
+.footer-links { display: flex; gap: 1.5rem; list-style: none; }
+.footer-links a { color: var(--muted); text-decoration: none; font-size: 0.82rem; transition: color 0.2s; }
+.footer-links a:hover { color: var(--teal); }
+
+/* SCROLL ANIMATIONS */
+.fade-up { opacity: 0; transform: translateY(32px); transition: opacity 0.65s ease, transform 0.65s ease; }
+.fade-up.visible { opacity: 1; transform: none; }
+.stagger > .fade-up:nth-child(2) { transition-delay: 0.1s; }
+.stagger > .fade-up:nth-child(3) { transition-delay: 0.2s; }
+
+/* MOBILE */
+@media (max-width: 900px) { .programs-grid { grid-template-columns: 1fr; max-width: 480px; margin-left: auto; margin-right: auto; } }
+@media (max-width: 768px) {
+  .nav-links { display: none; }
+  .nav-toggle { display: block; }
+  .nav-links.open { display: flex; flex-direction: column; position: fixed; top: 68px; left: 0; right: 0; background: var(--navy-mid); padding: 1.5rem; gap: 1.2rem; border-bottom: 1px solid var(--border); z-index: 199; }
+  .mission-grid { grid-template-columns: 1fr; }
+  .who-layout { grid-template-columns: 1fr; gap: 2.5rem; }
+  .who-photo-stack { height: 280px; }
+  .founder-card { grid-template-columns: 1fr; }
+  .contact-inner { grid-template-columns: 1fr; gap: 2.5rem; }
+  .form-row { grid-template-columns: 1fr; }
+  .strip-grid { grid-template-columns: repeat(2,1fr); }
+  .strip-item { border-right: none; border-bottom: 1px solid var(--border); }
+  footer { flex-direction: column; text-align: center; }
+  .hero-stats .stat-item { flex: 1 1 40%; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="navbar">
+  <a href="#hero" class="nav-logo">Virtual<span>InTechAp</span></a>
+  <ul class="nav-links" id="nav-links">
+    <li><a href="#mission">About</a></li>
+    <li><a href="#who">Who We Are</a></li>
+    <li><a href="#program">Programs</a></li>
+    <li><a href="#founder">Founder</a></li>
+    <li><a href="#contact" class="nav-cta">Contact Us</a></li>
+  </ul>
+  <button class="nav-toggle" id="nav-toggle" aria-label="Toggle menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-bg-img"></div>
+  <div class="hero-overlay"></div>
+  <div class="hero-grid-bg"></div>
+  <div class="hero-content">
+    <div class="hero-eyebrow">Online &amp; Distance Education · Arizona, USA</div>
+    <h1>Engineering Education<br><em>Without Boundaries</em></h1>
+    <p class="hero-sub">Virtual InTechAp delivers high-quality applied engineering and technology training wherever you are — no classroom required.</p>
+    <div class="hero-actions">
+      <a href="#program" class="btn-primary">View Programs</a>
+      <a href="#contact" class="btn-secondary">Get in Touch</a>
+    </div>
+    <div class="hero-stats">
+      <div class="stat-item"><div class="stat-num">100<span>+</span></div><div class="stat-label">Courses Available</div></div>
+      <div class="stat-item"><div class="stat-num">20<span>+</span></div><div class="stat-label">Years Experience</div></div>
+      <div class="stat-item"><div class="stat-num">5</div><div class="stat-label">Delivery Methods</div></div>
+      <div class="stat-item"><div class="stat-num">3</div><div class="stat-label">Program Tiers</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- STRIP -->
+<div id="strip">
+  <div class="strip-grid stagger">
+    <div class="strip-item fade-up"><span class="strip-icon">🎓</span><strong>Certification Prep</strong><span>Industry-recognized credentials</span></div>
+    <div class="strip-item fade-up"><span class="strip-icon">🌐</span><strong>100% Remote-Capable</strong><span>Learn from anywhere</span></div>
+    <div class="strip-item fade-up"><span class="strip-icon">⚡</span><strong>Applied Engineering</strong><span>Hands-on, practical skills</span></div>
+    <div class="strip-item fade-up"><span class="strip-icon">🤝</span><strong>Live Coaching</strong><span>Real-time support from DrO</span></div>
+    <div class="strip-item fade-up"><span class="strip-icon">🏭</span><strong>Corporate Training</strong><span>Custom programs for teams</span></div>
+  </div>
+</div>
+
+<!-- MISSION -->
+<section id="mission">
+  <div class="inner">
+    <div class="section-label">Our Purpose</div>
+    <h2>Vision &amp; Mission</h2>
+    <p class="section-intro">We are world-class leaders committed to empowering individuals with modern, accessible engineering education — anywhere, anytime.</p>
+    <div class="mission-grid fade-up">
+      <div class="mission-card">
+        <div class="mission-icon icon-teal">🎯</div>
+        <h3>Our Vision</h3>
+        <p>To be world-class leaders empowering individuals with online and distance education in applied engineering technologies — accessible to anyone, regardless of geography.</p>
+      </div>
+      <div class="mission-card">
+        <div class="mission-icon icon-blue">🚀</div>
+        <h3>Our Mission</h3>
+        <p>To promote and deliver high-quality education and training using modern Information and Communication Technologies (ICT), eliminating physical and geographic barriers to learning.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- WHO WE ARE — id="who" is the anchor the nav links to -->
+<section id="who">
+  <div class="inner">
+    <div class="who-layout">
+      <div class="fade-up">
+        <div class="section-label">Who We Are</div>
+        <h2>The Solution to High-Tech Education Access</h2>
+        <p class="section-intro" style="margin-bottom:1.5rem">We believe everyone deserves access to technological education and training, no matter their physical location. Virtual InTechAp was built to empower communities with high-quality online and distance engineering skills — using modern ICT to reach wherever you are.</p>
+        <a href="#contact" class="btn-secondary" style="display:inline-block">Learn More About Us</a>
+      </div>
+      <div class="who-photo-stack fade-up">
+        <div class="photo-card">
+          <img src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=800&q=80" alt="Engineering student at computer" loading="lazy">
+        </div>
+        <div class="photo-card">
+          <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=800&q=80" alt="Online learning session" loading="lazy">
+        </div>
+        <div class="photo-accent">
+          <strong>ICT-Powered</strong>
+          <span>Modern delivery methods</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="section-label" style="margin-bottom:1.2rem">How We Deliver</div>
+    <div class="delivery-grid stagger">
+      <div class="delivery-card fade-up"><div class="delivery-num">01</div><div class="delivery-text"><strong>On-Site Instruction</strong><span>We come directly to your location for training</span></div></div>
+      <div class="delivery-card fade-up"><div class="delivery-num">02</div><div class="delivery-text"><strong>Convenient Venue</strong><span>We coordinate an alternate meeting location</span></div></div>
+      <div class="delivery-card fade-up"><div class="delivery-num">03</div><div class="delivery-text"><strong>Live Online</strong><span>Real-time webinar instruction from anywhere</span></div></div>
+      <div class="delivery-card fade-up"><div class="delivery-num">04</div><div class="delivery-text"><strong>Self-Paced Courses</strong><span>Acquire and complete courses on your schedule</span></div></div>
+      <div class="delivery-card fade-up"><div class="delivery-num">05</div><div class="delivery-text"><strong>Custom Training</strong><span>Fully tailored to your specific organizational needs</span></div></div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- PROGRAMS -->
+<section id="program">
+  <div class="inner">
+    <div class="section-label">Enrollment</div>
+    <h2>Choose Your Program</h2>
+    <p class="section-intro">Three tiers designed to match your goals, timeline, and budget. All programs include access to our eLearning portal and Dr. Rodriguez's expertise.</p>
+
+    <div class="programs-grid stagger">
+
+      <!-- Tier 1: Foundation -->
+      <div class="prog-card fade-up">
+        <div class="prog-photo">
+          <img src="https://images.unsplash.com/photo-1453928582365-b6ad33cbcf64?w=800&q=80" alt="Self-paced learning" loading="lazy">
+          <div class="prog-photo-overlay"></div>
+        </div>
+        <div class="prog-body">
+          <div class="prog-tier tier-foundation">Foundation Track</div>
+          <h3>eLearning Self-Paced Access</h3>
+          <p>Flexible on-demand access to our full course library. Learn electronics engineering fundamentals at your own pace with no fixed deadlines.</p>
+          <div class="prog-price-row">
+            <div class="prog-price">$497</div>
+            <div class="prog-price-note">/ one-time payment</div>
+          </div>
+          <ul class="prog-features">
+            <li class="ck-blue">20+ on-demand eLearning courses</li>
+            <li class="ck-blue">Personal eLearning portal access</li>
+            <li class="ck-blue">6 months to complete</li>
+            <li class="ck-blue">Digital certificate of completion</li>
+            <li class="ck-blue">Email support from instructors</li>
+            <li class="ck-blue">Access to all course updates</li>
+          </ul>
+          <a href="mailto:info@intechap.us?subject=Foundation Track Inquiry" class="prog-cta cta-blue">Get Started →</a>
+        </div>
+      </div>
+
+      <!-- Tier 2: Professional (featured) -->
+      <div class="prog-card featured fade-up">
+        <div class="prog-badge">Most Popular</div>
+        <div class="prog-photo">
+          <img src="https://images.unsplash.com/photo-1518770660439-4636190af475?w=800&q=80" alt="Electronics engineering" loading="lazy">
+          <div class="prog-photo-overlay"></div>
+        </div>
+        <div class="prog-body">
+          <div class="prog-tier tier-professional">Professional Certificate</div>
+          <h3>TCAEES — Applied Electronics Engineering</h3>
+          <p>Our flagship program combining eLearning with live group coaching and hands-on demos led personally by Dr. Rodriguez.</p>
+          <div class="prog-price-row">
+            <div class="prog-price">$2,999</div>
+            <div class="prog-price-was">$4,999</div>
+          </div>
+          <ul class="prog-features">
+            <li class="ck-teal">Everything in Foundation</li>
+            <li class="ck-teal">20 live group coaching sessions with DrO</li>
+            <li class="ck-teal">Hands-on demos &amp; lab exercises</li>
+            <li class="ck-teal">DC/AC circuits, oscilloscope &amp; digital circuits</li>
+            <li class="ck-teal">Breadboarding &amp; capstone electronics project</li>
+            <li class="ck-teal">Accredited InTechAp certificate</li>
+          </ul>
+          <a href="mailto:info@intechap.us?subject=TCAEES Certificate Inquiry" class="prog-cta cta-teal">Enroll Now →</a>
+        </div>
+      </div>
+
+      <!-- Tier 3: Enterprise -->
+      <div class="prog-card fade-up">
+        <div class="prog-photo">
+          <img src="https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=800&q=80" alt="Corporate engineering training" loading="lazy">
+          <div class="prog-photo-overlay"></div>
+        </div>
+        <div class="prog-body">
+          <div class="prog-tier tier-enterprise">Enterprise / Corporate</div>
+          <h3>Custom Organization Training</h3>
+          <p>Fully tailored programs for companies, nonprofits, and institutions. We design, deliver, and scale training to meet your team's exact needs.</p>
+          <div class="prog-price-row">
+            <div class="prog-price" style="font-size:1.45rem;line-height:1.1">Custom Quote</div>
+          </div>
+          <ul class="prog-features">
+            <li class="ck-gold">Everything in Professional</li>
+            <li class="ck-gold">On-site delivery at your facility</li>
+            <li class="ck-gold">Fully customized curriculum</li>
+            <li class="ck-gold">Group &amp; team pricing options</li>
+            <li class="ck-gold">Progress reporting &amp; analytics</li>
+            <li class="ck-gold">Dedicated instructor &amp; support</li>
+          </ul>
+          <a href="mailto:info@intechap.us?subject=Enterprise Training Inquiry" class="prog-cta cta-gold">Request a Quote →</a>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="money-back fade-up">
+      <span>🛡️</span>
+      <div><strong>Satisfaction Guarantee</strong> — Week 1: 66% refund · Week 2: 33% refund · No refund after week 3 due to the accelerated nature of the program. Please allow 24 hours for account setup after enrollment.</div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- FOUNDER -->
+<section id="founder">
+  <div class="inner">
+    <div class="section-label">Leadership</div>
+    <h2>Meet the Founder</h2>
+    <div class="founder-card fade-up">
+      <div class="founder-glow"></div>
+      <div class="founder-avatar">
+        <img src="https://intechap.us/assets/images/New_Picture.192101841_std.png" alt="Dr. Oscar Rodriguez"
+          onerror="this.style.display='none';this.parentElement.querySelector('.founder-initials').style.display='flex';">
+        <div class="founder-initials" style="display:none">OR</div>
+      </div>
+      <div class="founder-info">
+        <h3>Dr. Oscar Rodriguez</h3>
+        <div class="founder-title">President &amp; Founder · Consultant &amp; University Professor in STEM</div>
+        <p class="founder-bio">Dr. Rodriguez founded Virtual InTechAp to satisfy the training and education needs of individuals and organizations not served by traditional institutions. With over 20 years of combined experience across industry, academia, and nonprofits, DrO brings deep expertise in cutting-edge STEM disciplines — delivering world-class engineering education directly to learners around the globe.</p>
+        <div class="expertise-tags">
+          <span class="tag">Automation</span>
+          <span class="tag">Mechatronics</span>
+          <span class="tag">Electronics</span>
+          <span class="tag">Robotics</span>
+          <span class="tag">Advanced Manufacturing</span>
+          <span class="tag">Renewable Energy</span>
+          <span class="tag">STEM Education</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="contact-inner">
+    <div>
+      <div class="section-label">Get in Touch</div>
+      <h2>Let's Work Together</h2>
+      <p class="section-intro" style="margin-bottom:0">Whether you're looking for individual training, corporate education, or want to learn more about our certificates — reach out today.</p>
+      <div class="contact-methods">
+        <a href="mailto:info@intechap.us" class="contact-method">
+          <div class="contact-method-icon" style="background:rgba(0,200,176,0.1)">✉️</div>
+          <div class="contact-method-text"><strong>Email</strong><span>info@intechap.us</span></div>
+        </a>
+        <a href="tel:+13176413282" class="contact-method">
+          <div class="contact-method-icon" style="background:rgba(26,110,252,0.1)">📞</div>
+          <div class="contact-method-text"><strong>Phone</strong><span>+1 (317) 641-3282</span></div>
+        </a>
+        <div class="contact-method" style="cursor:default">
+          <div class="contact-method-icon" style="background:rgba(245,166,35,0.1)">📍</div>
+          <div class="contact-method-text"><strong>Location</strong><span>Arizona, United States</span></div>
+        </div>
+      </div>
+    </div>
+    <div class="contact-form fade-up">
+      <h3>Send a Message</h3>
+      <div class="form-row">
+        <div class="form-group"><label>First Name</label><input type="text" placeholder="First"></div>
+        <div class="form-group"><label>Last Name</label><input type="text" placeholder="Last"></div>
+      </div>
+      <div class="form-group"><label>Email Address</label><input type="email" placeholder="you@example.com"></div>
+      <div class="form-group">
+        <label>Program Interest</label>
+        <select>
+          <option value="">Select a program...</option>
+          <option>Foundation — Self-Paced eLearning ($497)</option>
+          <option>Professional — TCAEES Certificate ($2,999)</option>
+          <option>Enterprise — Corporate Custom Training</option>
+          <option>General Inquiry</option>
+        </select>
+      </div>
+      <div class="form-group"><label>Message</label><textarea placeholder="Tell us how we can help improve your production and performance..."></textarea></div>
+      <button class="btn-primary" id="submit-btn" style="width:100%;justify-content:center" onclick="handleSubmit()">Send Message →</button>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-brand">Virtual<span>InTechAp</span> <span style="color:var(--muted);font-weight:300;font-family:var(--font-body);font-size:0.82rem">· Institute of Technology Applications</span></div>
+  <ul class="footer-links">
+    <li><a href="#mission">About</a></li>
+    <li><a href="#program">Programs</a></li>
+    <li><a href="#founder">Founder</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <div class="footer-copy">© 1998–2025 Virtual InTechAp · All rights reserved · Arizona, USA</div>
+</footer>
+
+<script>
+// Mobile nav toggle
+const toggle = document.getElementById('nav-toggle');
+const navLinks = document.getElementById('nav-links');
+toggle.addEventListener('click', () => navLinks.classList.toggle('open'));
+navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => navLinks.classList.remove('open')));
+
+// Navbar scroll class
+const nav = document.getElementById('navbar');
+window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.scrollY > 40), {passive:true});
+
+// Scroll-offset smooth scroll for ALL anchor links (fixes Who We Are + all nav)
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+  anchor.addEventListener('click', function(e) {
+    const targetId = this.getAttribute('href');
+    const target = document.querySelector(targetId);
+    if (target) {
+      e.preventDefault();
+      const top = target.getBoundingClientRect().top + window.scrollY - 72;
+      window.scrollTo({ top, behavior: 'smooth' });
+    }
+  });
+});
+
+// Intersection observer for fade-up animations
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+      observer.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+
+// Form submit feedback
+function handleSubmit() {
+  const btn = document.getElementById('submit-btn');
+  btn.textContent = '✓ Message Sent!';
+  btn.style.background = '#09a896';
+  btn.disabled = true;
+  setTimeout(() => {
+    btn.innerHTML = 'Send Message →';
+    btn.style.background = '';
+    btn.disabled = false;
+  }, 3000);
+}
+</script>
+</body>
+</html>
